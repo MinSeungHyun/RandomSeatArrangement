@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:padding="8dp"
+        android:padding="4dp"
         android:background="@android:color/white"
-        android:layout_margin="4dp"
         android:textColor="@android:color/black" />
 </LinearLayout>

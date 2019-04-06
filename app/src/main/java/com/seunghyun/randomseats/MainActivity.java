@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,6 +17,7 @@ import com.warkiz.widget.OnSeekChangeListener;
 import com.warkiz.widget.SeekParams;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
     GridView seatsGrid;
@@ -25,20 +27,21 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout settingLayout;
     IndicatorStayLayout indicatorLayout;
 
-    ArrayList<Integer> seatList;
+    ArrayList<Integer> seatList, shownSeatsList;
     TranslateAnimation outAnimation, inAnimation;
+    int stage = 1; //단계, 애니메이션 전환에 사용
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialize();
-        makeGrid(SeatsGirdAdapter.INITIALIZE);
+        makeGrid(SeatsGirdAdapter.INITIALIZE, null);
 
         final OnSeekChangeListener seekChangeListener = new OnSeekChangeListener() {
             @Override
             public void onSeeking(SeekParams seekParams) {
-                makeGrid(SeatsGirdAdapter.INITIALIZE);
+                makeGrid(SeatsGirdAdapter.INITIALIZE, null);
             }
 
             @Override
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-                makeGrid(SeatsGirdAdapter.INITIALIZE);
+                makeGrid(SeatsGirdAdapter.INITIALIZE, null);
             }
         };
         rowSeekBar.setOnSeekChangeListener(seekChangeListener);
@@ -69,17 +72,23 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                //settingLayout 이 화면에서 없어졌을 때
-                indicatorLayout.setVisibility(View.GONE);
-                settingLayoutTopTV.setText(getString(R.string.show_all_helper));
-                okButtonText.setText(getString(R.string.show_all));
-                okButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        makeGrid(SeatsGirdAdapter.SHOW_ALL);
-                    }
-                });
-                settingLayout.startAnimation(inAnimation);
+                if (stage == 1) {
+                    //settingLayout 이 화면에서 없어졌을 때 기능 전환
+                    indicatorLayout.setVisibility(View.GONE);
+                    settingLayoutTopTV.setText(getString(R.string.show_all_helper));
+                    okButtonText.setText(getString(R.string.show_all));
+                    okButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            makeGrid(SeatsGirdAdapter.SHOW_ALL, null);
+                            seatsGrid.setOnItemClickListener(null);
+                            settingLayout.startAnimation(outAnimation);
+                            stage = 2;
+                        }
+                    });
+                    Collections.shuffle(seatList);
+                    settingLayout.startAnimation(inAnimation);
+                }
             }
 
             @Override
@@ -87,9 +96,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        seatsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                shownSeatsList.add(position);
+                makeGrid(SeatsGirdAdapter.SHOW, shownSeatsList);
+            }
+        });
     }
 
-    private void makeGrid(int type) {
+    private void makeGrid(int type, ArrayList<Integer> shownSeatsList) {
         if (type == SeatsGirdAdapter.INITIALIZE) {
             //make list
             seatList = new ArrayList<>();
@@ -99,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             seatsGrid.setNumColumns(column);
         }
         //Create grid
-        seatsGrid.setAdapter(new SeatsGirdAdapter(getApplicationContext(), R.layout.grid_item, seatList, type));
+        seatsGrid.setAdapter(new SeatsGirdAdapter(getApplicationContext(), R.layout.grid_item, seatList, type, shownSeatsList));
     }
 
     private void initialize() {
@@ -119,14 +136,17 @@ public class MainActivity extends AppCompatActivity {
                 Animation.RELATIVE_TO_SELF, 0,
                 Animation.RELATIVE_TO_SELF, 0,
                 Animation.RELATIVE_TO_SELF, 1.1f);
-        outAnimation.setDuration(800);
+        outAnimation.setDuration(500);
         outAnimation.setFillAfter(true);
         inAnimation = new TranslateAnimation(
                 Animation.RELATIVE_TO_SELF, 0,
                 Animation.RELATIVE_TO_SELF, 0,
                 Animation.RELATIVE_TO_SELF, 1.1f,
                 Animation.RELATIVE_TO_SELF, 0);
-        inAnimation.setDuration(800);
+        inAnimation.setDuration(500);
         inAnimation.setFillAfter(true);
+
+        seatList = new ArrayList<>();
+        shownSeatsList = new ArrayList<>();
     }
 }

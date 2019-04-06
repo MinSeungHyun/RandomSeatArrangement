@@ -8,23 +8,24 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 class SeatsGirdAdapter extends BaseAdapter {
     static int INITIALIZE = 1;
     static int SHOW_ALL = 2;
+    static int SHOW = 3;
 
     private int layout;
-    private ArrayList<Integer> item;
+    private ArrayList<Integer> item, shownSeatsList;
     private LayoutInflater inf;
     private int type;
 
-    SeatsGirdAdapter(Context context, int layout, ArrayList<Integer> item, int type) {
+    SeatsGirdAdapter(Context context, int layout, ArrayList<Integer> item, int type, ArrayList<Integer> shownSeatsList) {
         this.layout = layout;
         this.item = item;
         inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.type = type;
+        this.shownSeatsList = shownSeatsList;
     }
 
     @Override
@@ -48,13 +49,17 @@ class SeatsGirdAdapter extends BaseAdapter {
             convertView = inf.inflate(layout, null);
         TextView tv = convertView.findViewById(R.id.grid_text);
 
-        switch (type){
+        switch (type) {
             case 1:
                 tv.setText("");
                 break;
             case 2:
-                Collections.shuffle(item);
                 tv.setText(String.valueOf(item.get(position)));
+                break;
+            case 3:
+                for (int seat : shownSeatsList) {
+                    if (position == seat) tv.setText(String.valueOf(item.get(position)));
+                }
                 break;
         }
         return convertView;
