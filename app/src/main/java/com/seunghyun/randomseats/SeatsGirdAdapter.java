@@ -1,6 +1,7 @@
 package com.seunghyun.randomseats;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,26 +17,28 @@ class SeatsGirdAdapter extends BaseAdapter {
     static int SHOW = 3;
 
     private int layout;
-    private ArrayList<Integer> item, shownSeatsList;
+    private ArrayList<Integer> seatList, shownSeatsList, exceptedList, numberList;
     private LayoutInflater inf;
     private int type;
 
-    SeatsGirdAdapter(Context context, int layout, ArrayList<Integer> item, int type, ArrayList<Integer> shownSeatsList) {
+    SeatsGirdAdapter(Context context, int layout, ArrayList<Integer> seatList, int type, ArrayList<Integer> exceptedList, ArrayList<Integer> shownSeatsList, ArrayList<Integer> numberList) {
         this.layout = layout;
-        this.item = item;
+        this.seatList = seatList;
         inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.type = type;
         this.shownSeatsList = shownSeatsList;
+        this.exceptedList = exceptedList;
+        this.numberList = numberList;
     }
 
     @Override
     public int getCount() {
-        return item.size();
+        return seatList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return item.get(position);
+        return seatList.get(position);
     }
 
     @Override
@@ -52,20 +55,29 @@ class SeatsGirdAdapter extends BaseAdapter {
         switch (type) {
             case 1:
                 tv.setText("");
+                if (exceptedList.contains(position)) {
+                    tv.setBackgroundColor(Color.TRANSPARENT);
+                }
                 break;
             case 2:
-                tv.setText(String.valueOf(item.get(position)));
+                if (exceptedList.contains(position)) {
+                    tv.setBackgroundColor(Color.TRANSPARENT);
+                } else {
+                    tv.setText(String.valueOf(numberList.get(position)));
+                }
                 break;
             case 3:
-                for (int seat : shownSeatsList) {
-                    if (position == seat) tv.setText(String.valueOf(item.get(position)));
+                if (exceptedList.contains(position)) {
+                    tv.setBackgroundColor(Color.TRANSPARENT);
+                } else {
+                    for (int seat : shownSeatsList) {
+                        if (position == seat) {
+                            tv.setText(String.valueOf(numberList.get(position)));
+                        }
+                    }
                 }
                 break;
         }
         return convertView;
-    }
-
-    public void setText() {
-
     }
 }
