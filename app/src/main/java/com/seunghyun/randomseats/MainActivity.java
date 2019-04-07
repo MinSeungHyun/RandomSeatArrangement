@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -65,12 +64,7 @@ public class MainActivity extends AppCompatActivity {
         rowSeekBar.setOnSeekChangeListener(seekChangeListener);
         columnSeekBar.setOnSeekChangeListener(seekChangeListener);
 
-        okButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                settingLayout.startAnimation(outAnimation);
-            }
-        });
+        okButton.setOnClickListener(v -> settingLayout.startAnimation(outAnimation));
 
         outAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -85,24 +79,18 @@ public class MainActivity extends AppCompatActivity {
                     settingLayoutTopTV.setText(getString(R.string.show_all_helper));
                     okButtonText.setText(getString(R.string.show_all));
 
-                    okButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            makeGrid(SeatsGirdAdapter.SHOW_ALL);
-                            seatsGrid.setOnItemClickListener(null);
-                            settingLayout.startAnimation(outAnimation);
-                            stage = 2;
-                        }
+                    okButton.setOnClickListener(v -> {
+                        makeGrid(SeatsGirdAdapter.SHOW_ALL);
+                        seatsGrid.setOnItemClickListener(null);
+                        settingLayout.startAnimation(outAnimation);
+                        stage = 2;
                     });
-                    seatsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            if (!shownSeatsList.contains(position) && !exceptedList.contains(position)) //이미 있는 값이 아니고, 제외된 자리가 아니면
-                                shownSeatsList.add(position);
-                            if (shownSeatsList.size() == numberList.size() - exceptedList.size())
-                                okButton.callOnClick();
-                            else makeGrid(SeatsGirdAdapter.SHOW);
-                        }
+                    seatsGrid.setOnItemClickListener((parent, view, position, id) -> {
+                        if (!shownSeatsList.contains(position) && !exceptedList.contains(position)) //이미 있는 값이 아니고, 제외된 자리가 아니면
+                            shownSeatsList.add(position);
+                        if (shownSeatsList.size() == numberList.size() - exceptedList.size())
+                            okButton.callOnClick();
+                        else makeGrid(SeatsGirdAdapter.SHOW);
                     });
 
                     for (int i = 0, j = 1; j <= seatList.size() - exceptedList.size(); i++) {
@@ -122,13 +110,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        seatsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                boolean isNotUseSeatChecked = exceptedList.contains(position);
-                DetailSettingDialog dialog = new DetailSettingDialog(MainActivity.this, isNotUseSeatChecked, position, arrayedNumberList);
-                dialog.show();
-            }
+        seatsGrid.setOnItemClickListener((parent, view, position, id) -> {
+            boolean isNotUseSeatChecked = exceptedList.contains(position);
+            DetailSettingDialog dialog = new DetailSettingDialog(MainActivity.this, isNotUseSeatChecked, position, arrayedNumberList);
+            dialog.show();
         });
     }
 
