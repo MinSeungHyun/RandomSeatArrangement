@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     //seatList : grid 를 생성하기 위한 리스트 / shownSeatsList : 숫자가 이미 보여진 자리 리스트 / exceptedList : 사용하지 않는 자리 리스트
     //numberList : seatList 에서 사용하지 않는 자리를 제외하고, 랜덤 숫자가 들어갈 리스트
-    ArrayList<Integer> seatList, shownSeatsList, exceptedList, numberList;
+    ArrayList<Integer> seatList, shownSeatsList, exceptedList, numberList, arrayedNumberList;
     TranslateAnimation outAnimation, inAnimation;
     int stage = 1; //단계, 애니메이션 전환에 사용
 
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 boolean isNotUseSeatChecked = exceptedList.contains(position);
-                DetailSettingDialog dialog = new DetailSettingDialog(MainActivity.this, isNotUseSeatChecked, position);
+                DetailSettingDialog dialog = new DetailSettingDialog(MainActivity.this, isNotUseSeatChecked, position, arrayedNumberList);
                 dialog.show();
             }
         });
