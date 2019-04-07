@@ -3,6 +3,7 @@ package com.seunghyun.randomseats;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -32,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
     IndicatorStayLayout indicatorLayout;
 
     //seatList : grid 를 생성하기 위한 리스트 / shownSeatsList : 숫자가 이미 보여진 자리 리스트 / exceptedList : 사용하지 않는 자리 리스트
-    //numberList : seatList 에서 사용하지 않는 자리를 제외하고, 랜덤 숫자가 들어갈 리스트
+    //numberList : seatList 에서 사용하지 않는 자리를 제외하고, 랜덤 숫자가 들어갈 리스트(사용하지 않는 자리에는 -1이 들어감) / arrayedNumberList : 정렬된 numberList
     ArrayList<Integer> seatList, shownSeatsList, exceptedList, numberList, arrayedNumberList;
+    //fixedSeatsMap : 고정된 자리<Integer position, Integer number>
+    SparseIntArray fixedSeatsMap;
     TranslateAnimation outAnimation, inAnimation;
     int stage = 1; //단계, 애니메이션 전환에 사용
 
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         seatsGrid.setOnItemClickListener((parent, view, position, id) -> {
             boolean isNotUseSeatChecked = exceptedList.contains(position);
-            DetailSettingDialog dialog = new DetailSettingDialog(MainActivity.this, isNotUseSeatChecked, position, arrayedNumberList);
+            DetailSettingDialog dialog = new DetailSettingDialog(MainActivity.this, isNotUseSeatChecked, position, arrayedNumberList, fixedSeatsMap);
             dialog.show();
         });
     }
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe //from DetailSettingDialog
-    public void onReceiveData(SendDialogDataEvent event) {
+    public void onReceiveUseData(SendDialogUseEvent event) {
         if (event.isNotUseSeat) {
             exceptedList.add(event.position);
             seatsGrid.getChildAt(event.position).findViewById(R.id.grid_text).setBackgroundColor(Color.TRANSPARENT);
@@ -134,23 +137,38 @@ public class MainActivity extends AppCompatActivity {
             seatsGrid.getChildAt(event.position).findViewById(R.id.grid_text).setBackgroundColor(Color.WHITE);
             settingLayoutTopTV.setText(getString(R.string.number_of_seats) + (seatList.size() - exceptedList.size()));
         }
+        arrayedNumberList.clear();
+        for (int i = 1; i <= seatList.size() - exceptedList.size(); i++)
+            arrayedNumberList.add(i);
+    }
+
+    @Subscribe //from DetailSettingDialog
+    public void onChangedFixCheckBox(SendDialogFIxEvent event) {
+        if (event.isFixSeat) fixedSeatsMap.put(event.position, event.number);
+        else fixedSeatsMap.delete(event.position);
+        makeGrid(SeatsGirdAdapter.ADD_FIXED_SEAT);
     }
 
     private void makeGrid(int type) {
         if (type == SeatsGirdAdapter.INITIALIZE) {
+            exceptedList.clear();
             //make list
             seatList = new ArrayList<>();
+            arrayedNumberList = new ArrayList<>();
             int row = rowSeekBar.getProgress(), column = columnSeekBar.getProgress(), seats = row * column;
-            for (int i = 1; i <= seats; i++) seatList.add(i);
+            for (int i = 1; i <= seats; i++) {
+                seatList.add(i);
+            }
+            //Dialog 에 들어갈 numberList 생성
             seats -= exceptedList.size();
+            for (int i = 1; i <= seats; i++) {
+                arrayedNumberList.add(i);
+            }
             settingLayoutTopTV.setText(getString(R.string.number_of_seats) + seats);
             seatsGrid.setNumColumns(column);
-            //remove needless exceptSeat
-            for (int exceptedSeat : exceptedList)
-                if (exceptedSeat > seats) exceptedList.remove(Integer.valueOf(exceptedSeat));
         }
         //Create grid
-        seatsGrid.setAdapter(new SeatsGirdAdapter(getApplicationContext(), R.layout.grid_item, seatList, type, exceptedList, shownSeatsList, numberList));
+        seatsGrid.setAdapter(new SeatsGirdAdapter(getApplicationContext(), R.layout.grid_item, seatList, type, exceptedList, shownSeatsList, numberList, fixedSeatsMap));
     }
 
     private void initialize() {
@@ -184,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
         shownSeatsList = new ArrayList<>();
         exceptedList = new ArrayList<>();
         numberList = new ArrayList<>();
+        fixedSeatsMap = new SparseIntArray();
     }
 
     private void shuffleExceptMinus(ArrayList<Integer> list) {

@@ -38,9 +38,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/number_of_seats"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/caution"
+            android:textColor="@android:color/tertiary_text_dark" />
 
         <com.warkiz.widget.IndicatorStayLayout
             android:id="@+id/indicator_layout"

@@ -1,10 +1,10 @@
 package com.seunghyun.randomseats;
 
-class SendDialogDataEvent {
+class SendDialogUseEvent {
     int position;
     boolean isNotUseSeat;
 
-    SendDialogDataEvent(int position, boolean isUseSeat) {
+    SendDialogUseEvent(int position, boolean isUseSeat) {
         this.position = position;
         this.isNotUseSeat = isUseSeat;
     }
