@@ -7,6 +7,7 @@
     <string name="ok">OK</string>
     <string name="show_all_helper">Click each seat to show the number, or click the button below to show all the numbers.</string>
     <string name="show_all">Show All</string>
+    <string name="reset">Reset</string>
     <string name="use_seat">I don\'t use this seat</string>
     <string name="fix_seat">fix this seat\'s number to</string>
     <string name="detail_setting">Detail setting</string>

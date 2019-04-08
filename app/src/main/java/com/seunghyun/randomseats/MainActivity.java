@@ -27,7 +27,7 @@ import java.util.LinkedList;
 public class MainActivity extends AppCompatActivity {
     GridView seatsGrid;
     IndicatorSeekBar rowSeekBar, columnSeekBar;
-    TextView settingLayoutTopTV, okButtonText;
+    TextView settingLayoutTopTV, okButtonText, cautionTV;
     RelativeLayout okButton;
     LinearLayout settingLayout;
     IndicatorStayLayout indicatorLayout;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     //fixedSeatsMap : 고정된 자리<Integer position, Integer number>
     SparseIntArray fixedSeatsMap;
     TranslateAnimation outAnimation, inAnimation;
-    int stage = 1; //단계, 애니메이션 전환에 사용
+    int stage = 0; //단계, 애니메이션 전환에 사용
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         rowSeekBar.setOnSeekChangeListener(seekChangeListener);
         columnSeekBar.setOnSeekChangeListener(seekChangeListener);
 
-        okButton.setOnClickListener(v -> settingLayout.startAnimation(outAnimation));
+        okButton.setOnClickListener(v -> {
+            settingLayout.startAnimation(outAnimation);
+            stage = 1;
+        });
 
         outAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (stage == 1) {
-                    //settingLayout 이 화면에서 없어졌을 때 기능 전환
+                    //자리 세팅이 완료됬을 떄
                     indicatorLayout.setVisibility(View.GONE);
                     settingLayoutTopTV.setText(getString(R.string.show_all_helper));
                     okButtonText.setText(getString(R.string.show_all));
@@ -104,6 +107,40 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     customShuffle(numberList);
+                    settingLayout.startAnimation(inAnimation);
+                } else if (stage == 2) {
+                    //모든 자리의 번호가 보여졌을 때
+                    settingLayoutTopTV.setVisibility(View.GONE);
+                    cautionTV.setVisibility(View.GONE);
+                    okButtonText.setText(getString(R.string.reset));
+                    okButton.setOnClickListener(v -> {
+                        settingLayout.startAnimation(outAnimation);
+                        stage = 0;
+                    });
+                    settingLayout.startAnimation(inAnimation);
+                } else if (stage == 0) {
+                    seatList = new ArrayList<>();
+                    shownSeatsList = new ArrayList<>();
+                    exceptedList = new ArrayList<>();
+                    numberList = new ArrayList<>();
+                    arrayedNumberList = new ArrayList<>();
+                    fixedSeatsMap = new SparseIntArray();
+                    settingLayoutTopTV.setVisibility(View.VISIBLE);
+                    cautionTV.setVisibility(View.VISIBLE);
+                    indicatorLayout.setVisibility(View.VISIBLE);
+                    rowSeekBar.setProgress(5);
+                    columnSeekBar.setProgress(6);
+                    okButtonText.setText(getString(R.string.ok));
+                    okButton.setOnClickListener(v -> {
+                        settingLayout.startAnimation(outAnimation);
+                        stage = 1;
+                    });
+                    seatsGrid.setOnItemClickListener((parent, view, position, id) -> {
+                        boolean isNotUseSeatChecked = exceptedList.contains(position);
+                        DetailSettingDialog dialog = new DetailSettingDialog(MainActivity.this, isNotUseSeatChecked, position, arrayedNumberList, fixedSeatsMap);
+                        dialog.show();
+                    });
+                    makeGrid(SeatsGirdAdapter.INITIALIZE);
                     settingLayout.startAnimation(inAnimation);
                 }
             }
@@ -202,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
         columnSeekBar = findViewById(R.id.column_seekBar);
         rowSeekBar.setIndicatorTextFormat(getString(R.string.row) + "${PROGRESS}");
         columnSeekBar.setIndicatorTextFormat(getString(R.string.column) + "${PROGRESS}");
+        cautionTV = findViewById(R.id.caution_tv);
 
         outAnimation = new TranslateAnimation(
                 Animation.RELATIVE_TO_SELF, 0,
