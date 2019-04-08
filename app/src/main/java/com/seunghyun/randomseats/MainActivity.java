@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             j++;
                         }
                     }
-                    shuffleExceptMinus(numberList);
+                    customShuffle(numberList);
                     settingLayout.startAnimation(inAnimation);
                 }
             }
@@ -140,18 +140,33 @@ public class MainActivity extends AppCompatActivity {
         arrayedNumberList.clear();
         for (int i = 1; i <= seatList.size() - exceptedList.size(); i++)
             arrayedNumberList.add(i);
+
+        for (int i = 0; i < fixedSeatsMap.size(); i++) {
+            int key = fixedSeatsMap.keyAt(i);
+            int value = fixedSeatsMap.get(key);
+            if (value > seatList.size() - exceptedList.size()) {
+                fixedSeatsMap.delete(key);
+                makeGrid(SeatsGirdAdapter.CHANGE);
+            }
+        }
     }
 
     @Subscribe //from DetailSettingDialog
     public void onChangedFixCheckBox(SendDialogFIxEvent event) {
         if (event.isFixSeat) fixedSeatsMap.put(event.position, event.number);
         else fixedSeatsMap.delete(event.position);
-        makeGrid(SeatsGirdAdapter.ADD_FIXED_SEAT);
+        makeGrid(SeatsGirdAdapter.CHANGE);
     }
 
     private void makeGrid(int type) {
         if (type == SeatsGirdAdapter.INITIALIZE) {
+            seatList.clear();
             exceptedList.clear();
+            arrayedNumberList.clear();
+            fixedSeatsMap.clear();
+            numberList.clear();
+        }
+        if (type == SeatsGirdAdapter.INITIALIZE || type == SeatsGirdAdapter.CHANGE) {
             //make list
             seatList = new ArrayList<>();
             arrayedNumberList = new ArrayList<>();
@@ -159,11 +174,16 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 1; i <= seats; i++) {
                 seatList.add(i);
             }
-            //Dialog 에 들어갈 numberList 생성
+            //Dialog spinner 에 들어갈 numberList 생성
             seats -= exceptedList.size();
             for (int i = 1; i <= seats; i++) {
                 arrayedNumberList.add(i);
             }
+            for (int i = 0; i < fixedSeatsMap.size(); i++) {
+                int key = fixedSeatsMap.keyAt(i);
+                arrayedNumberList.remove((Integer) fixedSeatsMap.get(key));
+            }
+
             settingLayoutTopTV.setText(getString(R.string.number_of_seats) + seats);
             seatsGrid.setNumColumns(column);
         }
@@ -202,16 +222,29 @@ public class MainActivity extends AppCompatActivity {
         shownSeatsList = new ArrayList<>();
         exceptedList = new ArrayList<>();
         numberList = new ArrayList<>();
+        arrayedNumberList = new ArrayList<>();
         fixedSeatsMap = new SparseIntArray();
     }
 
-    private void shuffleExceptMinus(ArrayList<Integer> list) {
-        LinkedList<Integer> listExceptedMinus = new LinkedList<>();
+    private void customShuffle(ArrayList<Integer> list) {
+        LinkedList<Integer> linkedList = new LinkedList<>(); //랜덤으로 섞으면 안되는 번호를 제외한 리스트
+        ArrayList<Integer> mapValueList = new ArrayList<>(); //fixedSeatsMap 의 value 값만 모은 리스트
+        for (int i = 0; i < fixedSeatsMap.size(); i++) {
+            int key = fixedSeatsMap.keyAt(i);
+            int value = fixedSeatsMap.get(key);
+            mapValueList.add(value);
+        }
+
         for (int value : list)
-            if (value >= 0) listExceptedMinus.add(value);
-        Collections.shuffle(listExceptedMinus);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) != -1) list.set(i, listExceptedMinus.pollLast());
+            if (value != -1 && !mapValueList.contains(value)) linkedList.add(value);
+        Collections.shuffle(linkedList);
+
+        for (int i = 0; i < list.size(); i++)
+            if (list.get(i) != -1 && fixedSeatsMap.get(i) == 0) list.set(i, linkedList.pollLast());
+        for (int i = 0; i < fixedSeatsMap.size(); i++) {
+            int key = fixedSeatsMap.keyAt(i);
+            int value = fixedSeatsMap.get(key);
+            list.set(key, value);
         }
     }
 }

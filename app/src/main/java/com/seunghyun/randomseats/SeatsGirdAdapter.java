@@ -16,7 +16,7 @@ class SeatsGirdAdapter extends BaseAdapter {
     static int INITIALIZE = 1;
     static int SHOW_ALL = 2;
     static int SHOW = 3;
-    static int ADD_FIXED_SEAT = 4;
+    static int CHANGE = 4;
 
     private int layout;
     private ArrayList<Integer> seatList, shownSeatsList, exceptedList, numberList;
@@ -57,18 +57,18 @@ class SeatsGirdAdapter extends BaseAdapter {
             convertView = inf.inflate(layout, null);
         TextView tv = convertView.findViewById(R.id.grid_text);
 
+        if (exceptedList.contains(position)) tv.setBackgroundColor(Color.TRANSPARENT);
         switch (type) {
             case 1:
                 tv.setText("");
                 if (exceptedList.contains(position)) tv.setBackgroundColor(Color.TRANSPARENT);
                 break;
             case 2:
-                if (exceptedList.contains(position)) tv.setBackgroundColor(Color.TRANSPARENT);
-                else tv.setText(String.valueOf(numberList.get(position)));
+                if (!exceptedList.contains(position))
+                    tv.setText(String.valueOf(numberList.get(position)));
                 break;
             case 3:
-                if (exceptedList.contains(position)) tv.setBackgroundColor(Color.TRANSPARENT);
-                else {
+                if (!exceptedList.contains(position)) {
                     for (int seat : shownSeatsList)
                         if (position == seat) tv.setText(String.valueOf(numberList.get(position)));
                 }
