@@ -21,35 +21,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="116dp"
         android:layout_marginBottom="8dp"
         android:text="@string/use_seat" />
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
+    <CheckBox
+        android:id="@+id/fix_seat_checkBox"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/fix_seat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/fix_seat_checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fix_seat"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Spinner
-            android:id="@+id/number_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            app:layout_constraintBottom_toBottomOf="@id/fix_seat_checkBox"
-            app:layout_constraintStart_toEndOf="@id/fix_seat_checkBox"
-            app:layout_constraintTop_toTopOf="@id/fix_seat_checkBox">
-
-        </Spinner>
-    </android.support.constraint.ConstraintLayout>
+    <Spinner
+        android:id="@+id/number_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="@id/fix_seat_checkBox"
+        app:layout_constraintStart_toEndOf="@id/fix_seat_checkBox"
+        app:layout_constraintTop_toTopOf="@id/fix_seat_checkBox" />
 
     <TextView
         android:id="@+id/ok_button"
@@ -63,7 +57,7 @@
         android:paddingTop="12dp"
         android:paddingEnd="24dp"
         android:paddingBottom="12dp"
-        android:text="@string/next"
+        android:text="@string/ok"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 </LinearLayout>

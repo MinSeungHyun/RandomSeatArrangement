@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     indicatorLayout.setVisibility(View.VISIBLE);
                     rowSeekBar.setProgress(5);
                     columnSeekBar.setProgress(6);
-                    okButtonText.setText(getString(R.string.next));
+                    okButtonText.setText(getString(R.string.ok));
                     okButton.setOnClickListener(v -> {
                         settingLayout.startAnimation(outAnimation);
                         stage = 1;

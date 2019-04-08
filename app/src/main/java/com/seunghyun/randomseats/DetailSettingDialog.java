@@ -38,6 +38,7 @@ class DetailSettingDialog extends Dialog implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_seat_settings);
+
         initialize();
         updateStatus();
 
