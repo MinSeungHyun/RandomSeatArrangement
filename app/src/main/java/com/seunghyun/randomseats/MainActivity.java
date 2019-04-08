@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 if (stage == 1) {
                     //자리 세팅이 완료됬을 떄
                     indicatorLayout.setVisibility(View.GONE);
+                    cautionTV.setVisibility(View.GONE);
                     settingLayoutTopTV.setText(getString(R.string.show_all_helper));
                     okButtonText.setText(getString(R.string.show_all));
 
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     indicatorLayout.setVisibility(View.VISIBLE);
                     rowSeekBar.setProgress(5);
                     columnSeekBar.setProgress(6);
-                    okButtonText.setText(getString(R.string.ok));
+                    okButtonText.setText(getString(R.string.next));
                     okButton.setOnClickListener(v -> {
                         settingLayout.startAnimation(outAnimation);
                         stage = 1;

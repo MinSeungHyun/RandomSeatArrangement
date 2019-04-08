@@ -1,16 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Random Seats</string>
     <string name="row">Row :" "</string>
-    <string name="column">Column : " "</string>
+    <string name="column">Column :" "</string>
     <string name="number_of_seats">Number of seats :" "</string>
     <string name="caution">Caution! If you change row or column below, the setting of each seat will be deleted.</string>
-    <string name="ok">OK</string>
-    <string name="show_all_helper">Click each seat to show the number, or click the button below to show all the numbers.</string>
+    <string name="next">Next</string>
+    <string name="show_all_helper">Click each seat to see a single number, or click the button below to view all of them.</string>
     <string name="show_all">Show All</string>
     <string name="reset">Reset</string>
     <string name="use_seat">I don\'t use this seat</string>
     <string name="fix_seat">fix this seat\'s number to</string>
-    <string name="detail_setting">Detail setting</string>
+    <string name="detail_setting">Seat setting</string>
 
-    <string name="check_icon_description">Make Seats</string>
+    <string name="check_icon_description" translatable="false">Make Seats</string>
 </resources>

@@ -63,7 +63,7 @@
         android:paddingTop="12dp"
         android:paddingEnd="24dp"
         android:paddingBottom="12dp"
-        android:text="@string/ok"
+        android:text="@string/next"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 </LinearLayout>

@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/number_of_seats"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold" />
@@ -121,7 +122,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="@string/ok"
+                android:text="@string/next"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
