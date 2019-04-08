@@ -12,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.warkiz.widget.IndicatorSeekBar;
 import com.warkiz.widget.IndicatorStayLayout;
 import com.warkiz.widget.OnSeekChangeListener;
@@ -40,10 +43,21 @@ public class MainActivity extends AppCompatActivity {
     TranslateAnimation outAnimation, inAnimation;
     int stage = 0; //단계, 애니메이션 전환에 사용
 
+    private InterstitialAd interstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //광고 초기화
+        AdView adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+
         EventBus.getDefault().register(this);
         initialize();
         makeGrid(SeatsGirdAdapter.INITIALIZE);
@@ -120,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
                     });
                     settingLayout.startAnimation(inAnimation);
                 } else if (stage == 0) {
+                    if (interstitialAd.isLoaded()) //전면광고
+                        interstitialAd.show();
                     seatList = new ArrayList<>();
                     shownSeatsList = new ArrayList<>();
                     exceptedList = new ArrayList<>();

@@ -1,132 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <GridView
-        android:id="@+id/seats_grid"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/rounded_square_10dp"
-        android:gravity="center"
-        android:horizontalSpacing="6dp"
-        android:padding="8dp"
-        android:smoothScrollbar="true"
-        android:verticalSpacing="6dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/setting_layout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/adView"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical">
 
-
-    <LinearLayout
-        android:id="@+id/setting_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_square_white"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="1">
-
-        <TextView
-            android:id="@+id/number_of_seats"
+        <GridView
+            android:id="@+id/seats_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/number_of_seats"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold" />
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_square_10dp"
+            android:gravity="center"
+            android:horizontalSpacing="6dp"
+            android:padding="8dp"
+            android:smoothScrollbar="true"
+            android:verticalSpacing="6dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/setting_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
 
-        <TextView
-            android:id="@+id/caution_tv"
+        <LinearLayout
+            android:id="@+id/setting_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/caution"
-            android:textColor="@android:color/tertiary_text_dark" />
-
-        <com.warkiz.widget.IndicatorStayLayout
-            android:id="@+id/indicator_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
-
-            <com.warkiz.widget.IndicatorSeekBar
-                android:id="@+id/row_seekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:isb_indicator_color="@color/colorPrimary"
-                app:isb_indicator_text_color="@android:color/white"
-                app:isb_max="10"
-                app:isb_min="1"
-                app:isb_progress="5"
-                app:isb_seek_smoothly="true"
-                app:isb_show_indicator="rounded_rectangle"
-                app:isb_show_tick_marks_type="divider"
-                app:isb_thumb_color="@color/colorPrimary"
-                app:isb_tick_marks_color="@color/colorPrimary"
-                app:isb_ticks_count="10"
-                app:isb_track_progress_color="@color/colorPrimary" />
-
-            <com.warkiz.widget.IndicatorSeekBar
-                android:id="@+id/column_seekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:isb_indicator_color="@color/colorPrimary"
-                app:isb_indicator_text_color="@android:color/white"
-                app:isb_max="10"
-                app:isb_min="1"
-                app:isb_progress="6"
-                app:isb_seek_smoothly="true"
-                app:isb_show_indicator="rounded_rectangle"
-                app:isb_show_tick_marks_type="divider"
-                app:isb_thumb_color="@color/colorPrimary"
-                app:isb_tick_marks_color="@color/colorPrimary"
-                app:isb_ticks_count="10"
-                app:isb_track_progress_color="@color/colorPrimary" />
-        </com.warkiz.widget.IndicatorStayLayout>
-
-        <RelativeLayout
-            android:id="@+id/ok_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_square_100dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:contentDescription="@string/check_icon_description"
-                android:src="@drawable/ic_baseline_check_24px"
-                android:tint="@android:color/white" />
+            android:background="@drawable/rounded_square_white"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1">
 
             <TextView
-                android:id="@+id/ok_button_text"
+                android:id="@+id/number_of_seats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="@string/ok"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/number_of_seats"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
-        </RelativeLayout>
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/caution_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/caution"
+                android:textColor="@android:color/tertiary_text_dark" />
+
+            <com.warkiz.widget.IndicatorStayLayout
+                android:id="@+id/indicator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <com.warkiz.widget.IndicatorSeekBar
+                    android:id="@+id/row_seekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:isb_indicator_color="@color/colorPrimary"
+                    app:isb_indicator_text_color="@android:color/white"
+                    app:isb_max="10"
+                    app:isb_min="1"
+                    app:isb_progress="5"
+                    app:isb_seek_smoothly="true"
+                    app:isb_show_indicator="rounded_rectangle"
+                    app:isb_show_tick_marks_type="divider"
+                    app:isb_thumb_color="@color/colorPrimary"
+                    app:isb_tick_marks_color="@color/colorPrimary"
+                    app:isb_ticks_count="10"
+                    app:isb_track_progress_color="@color/colorPrimary" />
+
+                <com.warkiz.widget.IndicatorSeekBar
+                    android:id="@+id/column_seekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:isb_indicator_color="@color/colorPrimary"
+                    app:isb_indicator_text_color="@android:color/white"
+                    app:isb_max="10"
+                    app:isb_min="1"
+                    app:isb_progress="6"
+                    app:isb_seek_smoothly="true"
+                    app:isb_show_indicator="rounded_rectangle"
+                    app:isb_show_tick_marks_type="divider"
+                    app:isb_thumb_color="@color/colorPrimary"
+                    app:isb_tick_marks_color="@color/colorPrimary"
+                    app:isb_ticks_count="10"
+                    app:isb_track_progress_color="@color/colorPrimary" />
+            </com.warkiz.widget.IndicatorStayLayout>
+
+            <RelativeLayout
+                android:id="@+id/ok_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_square_100dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/check_icon_description"
+                    android:src="@drawable/ic_baseline_check_24px"
+                    android:tint="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/ok_button_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@string/ok"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+</RelativeLayout>
