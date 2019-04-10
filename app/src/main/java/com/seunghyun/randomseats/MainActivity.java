@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (stage == 1) {
-                    //자리 세팅이 완료됬을 떄
+                    //자리 세팅이 완료되어서 OK 버튼을 눌렀을 때
                     indicatorLayout.setVisibility(View.GONE);
                     cautionTV.setVisibility(View.GONE);
                     settingLayoutTopTV.setText(getString(R.string.show_all_helper));
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     customShuffle(numberList);
                     settingLayout.startAnimation(inAnimation);
                 } else if (stage == 2) {
-                    //모든 자리의 번호가 보여졌을 때
+                    //전체 보기 버튼을 눌렀을 때
                     settingLayoutTopTV.setVisibility(View.GONE);
                     cautionTV.setVisibility(View.GONE);
                     okButtonText.setText(getString(R.string.reset));
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     settingLayout.startAnimation(inAnimation);
                 } else if (stage == 0) {
+                    //초기화 버튼 눌렀을 때
                     if (interstitialAd.isLoaded()) //전면광고
                         interstitialAd.show();
                     seatList = new ArrayList<>();
@@ -145,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
                     settingLayoutTopTV.setVisibility(View.VISIBLE);
                     cautionTV.setVisibility(View.VISIBLE);
                     indicatorLayout.setVisibility(View.VISIBLE);
-                    rowSeekBar.setProgress(5);
-                    columnSeekBar.setProgress(6);
                     okButtonText.setText(getString(R.string.ok));
                     okButton.setOnClickListener(v -> {
                         settingLayout.startAnimation(outAnimation);
