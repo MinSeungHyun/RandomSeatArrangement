@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         final OnSeekChangeListener seekChangeListener = new OnSeekChangeListener() {
             @Override
             public void onSeeking(SeekParams seekParams) {
-                makeGrid(SeatsGirdAdapter.INITIALIZE);
             }
 
             @Override
