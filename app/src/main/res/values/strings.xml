@@ -14,6 +14,7 @@
     <string name="detail_setting">Seat setting</string>
 
     <string name="check_icon_description" translatable="false">Make Seats</string>
+    <string name="elapse_button_description" translatable="false">elapse</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/6734529939</string>
     <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/1649724215</string>
 </resources>
