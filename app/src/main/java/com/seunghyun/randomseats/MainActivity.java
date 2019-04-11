@@ -1,11 +1,13 @@
 package com.seunghyun.randomseats;
 
+import android.animation.LayoutTransition;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseIntArray;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -325,6 +327,8 @@ public class MainActivity extends AppCompatActivity {
         fixedSeatsMap = new SparseIntArray();
 
         isMinimized = false;
+
+        ((ViewGroup) findViewById(R.id.constraint)).getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
     }
 
     private void customShuffle(ArrayList<Integer> list) {
