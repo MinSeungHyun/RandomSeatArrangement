@@ -82,7 +82,7 @@ class DetailSettingDialog extends Dialog implements View.OnClickListener {
         okButton.setOnClickListener(this);
 
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, seatList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
         fixSeatSpinner.setAdapter(adapter);
 
         useSeatCheckBox.setChecked(isNotUseSeatChecked);
