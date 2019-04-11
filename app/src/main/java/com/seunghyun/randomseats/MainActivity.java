@@ -3,7 +3,6 @@ package com.seunghyun.randomseats;
 import android.animation.LayoutTransition;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseIntArray;
 import android.view.View;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout okButton, minimizeButton;
     LinearLayout settingLayout, innerSettingLayout;
     IndicatorStayLayout indicatorLayout;
-    FloatingActionButton floatingButton;
+    MovableFloatingActionButton floatingButton;
 
     //seatList : grid 를 생성하기 위한 리스트 / shownSeatsList : 숫자가 이미 보여진 자리 리스트 / exceptedList : 사용하지 않는 자리 리스트
     //numberList : seatList 에서 사용하지 않는 자리를 제외하고, 랜덤 숫자가 들어갈 리스트(사용하지 않는 자리에는 -1이 들어감) / arrayedNumberList : 정렬된 numberList
