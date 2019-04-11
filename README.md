@@ -20,7 +20,7 @@ RandomSeats
 
 ## Ver 1.2 (예정)
 > 초기화 버튼 눌렀을 때 행, 열은 초기화되지 않게 바뀜<br>
-> 앱 이름 변경<br>
+> 앱 이름 변경 Random Seat Arrangement(랜덤 자리 배치)<br>
 > 설정창 최소화 기능<br>
-> spinner item 크기 조절<
+> spinner item 크기 조절<br>
 > 번호 고정하고 다시 클릭하면 나오는 오류 제거
