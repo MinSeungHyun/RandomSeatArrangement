@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Random Maker</string>
+    <string name="app_name">Random Seat Arrangement</string>
     <string name="row">Row :" "</string>
     <string name="column">Column :" "</string>
     <string name="number_of_seats">Number of seats :" "</string>
