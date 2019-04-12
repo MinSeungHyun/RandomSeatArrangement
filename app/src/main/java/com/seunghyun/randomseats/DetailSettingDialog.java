@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.SparseIntArray;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -16,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 class DetailSettingDialog extends Dialog implements View.OnClickListener {
     private ArrayList<Integer> seatList;
@@ -38,6 +40,7 @@ class DetailSettingDialog extends Dialog implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Objects.requireNonNull(getWindow()).requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_seat_settings);
 
         initialize();
@@ -82,21 +85,17 @@ class DetailSettingDialog extends Dialog implements View.OnClickListener {
         fixSeatCheckBox.setOnClickListener(this);
         okButton.setOnClickListener(this);
 
-        //자리 고정이 되어있으면 리스트에 현재 아이템 추가
-        if (fixedSeatsMap.get(position) != 0) {
-            seatList.add(fixedSeatsMap.get(position));
-            Collections.sort(seatList);
-        }
-
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, seatList);
         adapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
-        fixSeatSpinner.setAdapter(adapter);
 
         useSeatCheckBox.setChecked(isNotUseSeatChecked);
         if (fixedSeatsMap.get(position) != 0) {
+            seatList.add(fixedSeatsMap.get(position));
+            Collections.sort(seatList);
             fixSeatCheckBox.setChecked(true);
             fixSeatSpinner.setSelection(adapter.getPosition(fixedSeatsMap.get(position)));
         }
+        fixSeatSpinner.setAdapter(adapter);
     }
 
     private void updateStatus() {
