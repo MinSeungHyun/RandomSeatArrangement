@@ -12,6 +12,7 @@ RandomSeats
 10. 전에 앉은자리 배치않되게 (프리미엄)
 11. 설정창 최소화 대신 자리창 최대화 기능
 12. 자리배치화면 위에 현재 단계 표시 (https://github.com/stepstone-tech/android-material-stepper)
+13. 제스쳐로 설정창 최소화
 
 ## Ver 1.0 (Code 1)
 > 앱 출시
