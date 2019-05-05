@@ -31,3 +31,6 @@ RandomSeats
 > spinner item 크기 조절<br>
 > 번호 고정하고 다시 클릭하면 나오는 오류 제거<br>
 > GridView 변할때 애니메이션
+
+## Ver 2.0 (Code 4)
+> 
