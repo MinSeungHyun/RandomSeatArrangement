@@ -1,4 +1,4 @@
-RandomSeats
+Random Seat Arrangement (랜덤 자리 배치)
 ===========
 업데이트 예정
 1. 화면 돌릴 떄 오류, 안드로이드 5.0자리 설정 dialog에서colorAccent 적용 안되는 오류, 가로모드에서 dialog안뜨는 오류
