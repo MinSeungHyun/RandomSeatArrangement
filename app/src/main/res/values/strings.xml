@@ -8,6 +8,8 @@
     <string name="description_gradient_image" translatable="false">gradient_image</string>
     <string name="description_check_image" translatable="false">check_image</string>
     <string name="description_drag_icon" translatable="false">drag_icon</string>
+    <string name="description_splash_background" translatable="false">splash_background</string>
+    <string name="description_splash_foreground" translatable="false">splash_foreground</string>
 
     <string name="row">Row :" "</string>
     <string name="column">Column :" "</string>
