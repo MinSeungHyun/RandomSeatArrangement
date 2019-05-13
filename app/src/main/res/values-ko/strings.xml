@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">랜덤 자리 배치</string>
+    <string name="title_history">기록</string>
+    <string name="title_home">홈</string>
+    <string name="title_settings">설정</string>
+
+    <string name="row">행 :" "</string>
+    <string name="column">열 :" "</string>
+    <string name="next">다음</string>
+    <string name="show_all">전체 보기</string>
+    <string name="reset">초기화</string>
+    <string name="number_of_seats">자리 개수 :" "</string>
+    <string name="use_seat">이 자리 사용하지 않기</string>
+    <string name="fix_seat">이 자리의 번호를 다음으로 고정</string>
+    <string name="seat_settings">자리 설정</string>
+    <string name="none">선택 안됨</string>
+    <string name="store_not_found">스토어에서 앱을 찾을 수 없습니다.</string>
+    <string name="etc">기타</string>
+    <string name="review_title">앱을 잘 사용하고 계신가요?</string>
+    <string name="review_message">리뷰를 남겨주세요. 리뷰는 개발자에게 큰 도움이 됩니다!</string>
+    <string name="review_no">설정에서 다시 리뷰를 남길 수 있습니다.</string>
+    <string name="yes">네</string>
+    <string name="no">아니요</string>
+    <string name="email_title">\'랜덤 자리 배치\' 개발자에게</string>
+    <string name="update_available">업데이트 사용 가능</string>
+    <string name="update_not_available">사용 가능한 업데이트가 없습니다.</string>
+    <string name="connect_failed">연결 실패</string>
+    <string name="show">보기</string>
+    <string name="service_preparing">서비스 준비중입니다.</string>
+    <string name="caution">주의! 아래의 행과 열을 바꾸면 각 자리의 설정이 초기화됩니다.</string>
+    <string name="show_all_helper">각각의 자리를 클릭하여 하나의 번호씩 보거나, 아래 버튼을 클릭하여 모두 볼 수 있습니다.</string>
+
+    <!--Preference fragment-->
+    <string name="use_seatNumber">좌석 번호 사용</string>
+    <string name="row_seat_number">행 좌석 번호</string>
+    <string name="column_seat_number">열 좌석 번호</string>
+    <string-array name="number_or_alphabet_array">
+        <item>숫자</item>
+        <item>알파벳</item>
+    </string-array>
+    <string name="number">숫자</string>
+    <string name="alphabet">알파벳</string>
+    <string name="review">스토어에 리뷰 남기기</string>
+    <string name="send_email">개발자에게 이메일 보내기</string>
+    <string name="check_update">업데이트 확인</string>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/seat_settings">
+        <SwitchPreference
+            android:icon="@drawable/ic_baseline_format_list_numbered_24px"
+            android:key="@string/use_seatNumber_key"
+            android:title="@string/use_seatNumber" />
+
+        <ListPreference
+            android:dependency="@string/use_seatNumber_key"
+            android:entries="@array/number_or_alphabet_array"
+            android:entryValues="@array/number_or_alphabet_array"
+            android:key="@string/row_seat_number_key"
+            android:summary="@string/alphabet"
+            android:title="@string/row_seat_number" />
+
+        <ListPreference
+            android:dependency="@string/use_seatNumber_key"
+            android:entries="@array/number_or_alphabet_array"
+            android:entryValues="@array/number_or_alphabet_array"
+            android:key="@string/column_seat_number_key"
+            android:summary="@string/number"
+            android:title="@string/column_seat_number" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/etc">
+        <Preference
+            android:icon="@drawable/ic_outline_star_rate_18px"
+            android:key="@string/review_key"
+            android:title="@string/review" />
+
+        <Preference
+            android:icon="@drawable/ic_baseline_email_24px"
+            android:key="@string/send_email_key"
+            android:title="@string/send_email" />
+
+        <Preference
+            android:icon="@drawable/ic_baseline_get_app_24px"
+            android:key="@string/check_update_key"
+            android:title="@string/check_update" />
+    </PreferenceCategory>
+</PreferenceScreen>

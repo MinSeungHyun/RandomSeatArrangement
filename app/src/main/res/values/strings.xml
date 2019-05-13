@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Random Seat Arrangement</string>
+    <string name="title_history">History</string>
+    <string name="title_home">Home</string>
+    <string name="title_settings">Settings</string>
+
+    <!--Image descriptions-->
+    <string name="description_gradient_image" translatable="false">gradient_image</string>
+    <string name="description_check_image" translatable="false">check_image</string>
+    <string name="description_drag_icon" translatable="false">drag_icon</string>
+
+    <string name="row">Row :" "</string>
+    <string name="column">Column :" "</string>
+    <string name="next">Next</string>
+    <string name="show_all">Show All</string>
+    <string name="reset">Reset</string>
+    <string name="number_of_seats">Number of seats :" "</string>
+    <string name="use_seat">I don\'t use this seat</string>
+    <string name="fix_seat">fix this seat\'s number to</string>
+    <string name="seat_settings">Seat settings</string>
+    <string name="none">Not selected</string>
+    <string name="store_not_found">Unable to find an app in the store.</string>
+    <string name="etc">ETC</string>
+    <string name="review_title">Are you using the app well?</string>
+    <string name="review_message">Pleas leave a review on the store. Reviews are a great help for developers!</string>
+    <string name="review_no">You can leave a review again at the setting.</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="email_title">To : The developer of \'Random Seat Arrangement\'</string>
+    <string name="update_available">Update available</string>
+    <string name="update_not_available">There is no update available.</string>
+    <string name="connect_failed">Connect failed</string>
+    <string name="show">SHOW</string>
+    <string name="service_preparing">Service is in preparation.</string>
+    <string name="caution">Caution! If you change row or column below, the setting of each seat will be deleted.</string>
+    <string name="show_all_helper">Click each seat to see a single number, or click the button below to view all of them.</string>
+
+    <!--Preference fragment-->
+    <string name="use_seatNumber">Use seat number</string>
+    <string name="use_seatNumber_key" translatable="false">use_seat_number</string>
+    <string name="row_seat_number">Row seat number</string>
+    <string name="column_seat_number">Column seat number</string>
+    <string name="row_seat_number_key" translatable="false">row_seat_number</string>
+    <string name="column_seat_number_key" translatable="false">column_seat_number</string>
+    <string-array name="number_or_alphabet_array">
+        <item>Number</item>
+        <item>Alphabet</item>
+    </string-array>
+    <string name="number">Number</string>
+    <string name="alphabet">Alphabet</string>
+    <string name="review">Leave a review on the store</string>
+    <string name="review_key" translatable="false">review</string>
+    <string name="reset_count_key" translatable="false">reset_count</string>
+    <string name="send_email">Send an email to the developer</string>
+    <string name="send_email_key" translatable="false">send_email</string>
+    <string name="check_update">Check for update</string>
+    <string name="check_update_key" translatable="false">check_update</string>
+
+    <!--AD-->
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/6734529939</string>
+    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/1649724215</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8e24aa</color>
+    <color name="colorPrimaryDark">#5c007a</color>
+    <color name="colorAccent">#fb3e7f</color>
+
+    <color name="androidWhite">#fafafa</color>
+    <color name="switchTrackOff">#b9b9b9</color>
+    <color name="switchTrackOn">#f5cedd</color>
+    <color name="disabledBlack">#85000000</color>
+    <color name="transparentWhite">#EBE9E9E9</color>
+</resources>
