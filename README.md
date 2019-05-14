@@ -39,4 +39,4 @@ Random Seat Arrangement (랜덤 자리 배치)
 
 ## Ver 2.1 (최신) (Code 5)
 > 대각선 스크롤 추가<br>
-> Splash screen 
+> Splash screen 추가
