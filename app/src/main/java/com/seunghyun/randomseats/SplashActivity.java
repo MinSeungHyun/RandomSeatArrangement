@@ -8,20 +8,35 @@ import android.view.WindowManager;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private boolean isRunning = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_splash);
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        isRunning = true;
         Handler hd = new Handler();
-        hd.postDelayed(new splashHandler(), 2000);
+        hd.postDelayed(new splashHandler(), 1500);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        isRunning = false;
     }
 
     private class splashHandler implements Runnable {
         public void run() {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            SplashActivity.this.finish();
+            if (isRunning) {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                SplashActivity.this.finish();
+            }
         }
     }
 }
