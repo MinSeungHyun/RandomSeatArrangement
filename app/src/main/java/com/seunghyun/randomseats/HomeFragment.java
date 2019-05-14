@@ -70,8 +70,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private boolean isChangingTrigger = false; //onStageButtonClickListener 와 bottomSheetCallback 간의 통신을 위함
     private int row, column;
-    private float mX = 0, mY = 0;
-    private boolean isNotFirstVerticalTouch = true;
+    private float mX = 0;
+    private boolean isNotFirstTouch = true;
     private String rowSeatNumberType, columnSeatNumberType;
     private ArrayList<String> notUseSeatTags;
     private HashMap<String, String> fixedSeatsMap;
@@ -284,33 +284,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_MOVE:
                     curX = event.getX();
-                    if (isNotFirstVerticalTouch) {
-                        int x = (int) (mX - curX);
+                    if (isNotFirstTouch) {
+                        int x = (int) ((mX - curX) * 1.2);
                         seatsGridHorizontalScrollView.scrollBy(x, 0);
                     }
                     mX = curX;
-                    isNotFirstVerticalTouch = true;
+                    isNotFirstTouch = true;
                     break;
                 case MotionEvent.ACTION_UP:
-                    isNotFirstVerticalTouch = false;
-                    break;
-            }
-            return false;
-        });
-        seatsGridHorizontalScrollView.setOnTouchListener((v, event) -> {
-            float curY;
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_MOVE:
-                    curY = event.getY();
-                    if (isNotFirstVerticalTouch) {
-                        int y = (int) (mY - curY);
-                        seatsGridScrollView.scrollBy(0, y);
-                    }
-                    mY = curY;
-                    isNotFirstVerticalTouch = true;
-                    break;
-                case MotionEvent.ACTION_UP:
-                    isNotFirstVerticalTouch = false;
+                    isNotFirstTouch = false;
                     break;
             }
             return false;
