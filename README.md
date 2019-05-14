@@ -36,3 +36,7 @@ Random Seat Arrangement (랜덤 자리 배치)
 > 화면을 가로로 돌려도 상태가 유지됨<br>
 > 앱 업데이트가 있을시 자동으로 알리기<br>
 > 안드로이드 6.0미만 지원 
+
+## Ver 2.1 (최신) (Code 5)
+> 대각선 스크롤 추가<br>
+> Splash screen 
