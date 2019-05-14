@@ -1,6 +1,7 @@
 package com.seunghyun.randomseats;
 
 import android.animation.LayoutTransition;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -17,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -68,6 +70,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private boolean isChangingTrigger = false; //onStageButtonClickListener 와 bottomSheetCallback 간의 통신을 위함
     private int row, column;
+    private float mX = 0, mY = 0;
+    private boolean isNotFirstVerticalTouch = true;
     private String rowSeatNumberType, columnSeatNumberType;
     private ArrayList<String> notUseSeatTags;
     private HashMap<String, String> fixedSeatsMap;
@@ -216,6 +220,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         preference.unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void init(View view) {
         seatsGridScrollView = view.findViewById(R.id.seats_scrollView);
         seatsGridHorizontalScrollView = view.findViewById(R.id.seats_horizontal_scrollView);
@@ -273,6 +278,43 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 homeFragmentContainer.getLayoutTransition().disableTransitionType(LayoutTransition.CHANGING);
             }
         };
+
+        seatsGridScrollView.setOnTouchListener((v, event) -> {
+            float curX;
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_MOVE:
+                    curX = event.getX();
+                    if (isNotFirstVerticalTouch) {
+                        int x = (int) (mX - curX);
+                        seatsGridHorizontalScrollView.scrollBy(x, 0);
+                    }
+                    mX = curX;
+                    isNotFirstVerticalTouch = true;
+                    break;
+                case MotionEvent.ACTION_UP:
+                    isNotFirstVerticalTouch = false;
+                    break;
+            }
+            return false;
+        });
+        seatsGridHorizontalScrollView.setOnTouchListener((v, event) -> {
+            float curY;
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_MOVE:
+                    curY = event.getY();
+                    if (isNotFirstVerticalTouch) {
+                        int y = (int) (mY - curY);
+                        seatsGridScrollView.scrollBy(0, y);
+                    }
+                    mY = curY;
+                    isNotFirstVerticalTouch = true;
+                    break;
+                case MotionEvent.ACTION_UP:
+                    isNotFirstVerticalTouch = false;
+                    break;
+            }
+            return false;
+        });
 
         horizontalNumberScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> seatsGridHorizontalScrollView.setScrollX(scrollX));
         seatsGridHorizontalScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> horizontalNumberScrollView.setScrollX(scrollX));
