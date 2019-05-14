@@ -10,7 +10,6 @@ Random Seat Arrangement (랜덤 자리 배치)
 8. 전에 앉은자리 배치않되게 (프리미엄)
 9. 자리배치화면 위에 현재 단계 표시 (https://github.com/stepstone-tech/android-material-stepper)
 10. 계정연동
-11. 앱 업데이트 알림기능 추가
 12. 초기화할 때 초기화 할 항목 설정 
 
 ## Ver 1.0 (Code 1)
