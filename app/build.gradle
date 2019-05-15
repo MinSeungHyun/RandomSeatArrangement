@@ -6,7 +6,7 @@ android {
         applicationId "com.seunghyun.randomseats"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 5
+        versionCode 4
         versionName "2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -39,4 +39,5 @@ dependencies {
     implementation 'com.github.douglasjunior:android-simple-tooltip:0.2.2'
     implementation 'com.google.android.gms:play-services-ads:17.2.0'
     implementation 'com.google.android.play:core:1.5.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
 }
