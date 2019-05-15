@@ -1,39 +1,31 @@
 package com.seunghyun.randomseats;
 
-import android.support.v7.widget.CardView;
 import android.widget.GridLayout;
-import android.widget.TextView;
 
 class CardItem {
-    private CardView cardView;
     private GridLayout gridLayout;
-    private TextView titleTV, descriptionTV, dateTV;
+    private String titleText, descriptionText, dateText;
 
-    public CardItem(CardView cardView, GridLayout gridLayout, TextView titleTV, TextView descriptionTV, TextView dateTV) {
-        this.cardView = cardView;
+    CardItem(GridLayout gridLayout, String titleTV, String descriptionTV, String dateTV) {
         this.gridLayout = gridLayout;
-        this.titleTV = titleTV;
-        this.descriptionTV = descriptionTV;
-        this.dateTV = dateTV;
+        this.titleText = titleTV;
+        this.descriptionText = descriptionTV;
+        this.dateText = dateTV;
     }
 
-    public CardView getCardView() {
-        return cardView;
-    }
-
-    public GridLayout getGridLayout() {
+    GridLayout getGridLayout() {
         return gridLayout;
     }
 
-    public TextView getTitleTV() {
-        return titleTV;
+    String getTitleText() {
+        return titleText;
     }
 
-    public TextView getDescriptionTV() {
-        return descriptionTV;
+    String getDescriptionText() {
+        return descriptionText;
     }
 
-    public TextView getDateTV() {
-        return dateTV;
+    String getDateText() {
+        return dateText;
     }
 }
