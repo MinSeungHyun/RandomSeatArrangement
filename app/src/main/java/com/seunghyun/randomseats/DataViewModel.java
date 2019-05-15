@@ -55,6 +55,8 @@ public class DataViewModel extends ViewModel {
                         try {
                             appUpdateManager.startUpdateFlowForResult(updateInfo, AppUpdateType.IMMEDIATE, context, 1);
                         } catch (IntentSender.SendIntentException e) {
+                            if (isNullTextShow)
+                                Toast.makeText(context, R.string.connect_failed, Toast.LENGTH_LONG).show();
                             e.printStackTrace();
                         }
                     });
