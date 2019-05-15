@@ -10,7 +10,6 @@
     <string name="description_drag_icon" translatable="false">drag_icon</string>
     <string name="description_splash_background" translatable="false">splash_background</string>
     <string name="description_splash_foreground" translatable="false">splash_foreground</string>
-    <string name="description_history_image" translatable="false">history_image</string>
 
     <string name="row">Row :" "</string>
     <string name="column">Column :" "</string>
