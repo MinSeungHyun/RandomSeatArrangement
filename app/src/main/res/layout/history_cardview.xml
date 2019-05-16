@@ -17,11 +17,12 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <GridLayout
-            android:id="@+id/history_seat_grid"
+        <ImageView
+            android:id="@+id/history_grid_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:contentDescription="@string/description_grid_image" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

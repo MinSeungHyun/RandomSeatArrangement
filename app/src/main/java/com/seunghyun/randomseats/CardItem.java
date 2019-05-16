@@ -1,20 +1,20 @@
 package com.seunghyun.randomseats;
 
-import android.widget.GridLayout;
+import android.graphics.Bitmap;
 
 class CardItem {
-    private GridLayout gridLayout;
+    private Bitmap gridImage;
     private String titleText, descriptionText, dateText;
 
-    CardItem(GridLayout gridLayout, String titleTV, String descriptionTV, String dateTV) {
-        this.gridLayout = gridLayout;
+    CardItem(Bitmap gridImage, String titleTV, String descriptionTV, String dateTV) {
+        this.gridImage = gridImage;
         this.titleText = titleTV;
         this.descriptionText = descriptionTV;
         this.dateText = dateTV;
     }
 
-    GridLayout getGridLayout() {
-        return gridLayout;
+    Bitmap getGridImage() {
+        return gridImage;
     }
 
     String getTitleText() {
