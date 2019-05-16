@@ -31,8 +31,8 @@ public class HistoryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         ArrayList<CardItem> items = new ArrayList<>();
-        items.add(new CardItem(null, "Title1", "Description1", "2019.05.16"));
-        items.add(new CardItem(null, "Title2", "Description2", "2019.05.17"));
+        items.add(new CardItem("Title1", "Description1", "2019.05.16"));
+        items.add(new CardItem("Title2", "Description2", "2019.05.17"));
 
         recyclerView.setAdapter(new RecyclerAdapter(items));
 
