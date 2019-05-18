@@ -1,6 +1,8 @@
 package com.seunghyun.randomseats;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +13,14 @@ import android.widget.TextView;
 import java.util.List;
 
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+    private final FragmentActivity context;
     private List<CardItem> items;
+    private CardItem recentlyDeletedItem;
+    private int recentlyDeletedItemPosition;
 
-    RecyclerAdapter(List<CardItem> items) {
+    RecyclerAdapter(FragmentActivity context, List<CardItem> items) {
         this.items = items;
+        this.context = context;
     }
 
     @NonNull
@@ -35,6 +41,26 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    void deleteItem(int position) {
+        recentlyDeletedItem = items.get(position);
+        recentlyDeletedItemPosition = position;
+        items.remove(position);
+        notifyItemRemoved(position);
+        showUndoSnackBar();
+    }
+
+    private void showUndoSnackBar() {
+        View view = context.findViewById(R.id.activity_main_container);
+        Snackbar snackbar = Snackbar.make(view, R.string.item_deleted, Snackbar.LENGTH_LONG);
+        snackbar.setAction(R.string.undo, v -> undoDelete());
+        snackbar.show();
+    }
+
+    private void undoDelete() {
+        items.add(recentlyDeletedItemPosition, recentlyDeletedItem);
+        notifyItemInserted(recentlyDeletedItemPosition);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
