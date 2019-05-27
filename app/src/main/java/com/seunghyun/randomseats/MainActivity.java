@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Init ad
         AdView adView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("F828F6F7909FEF842AC60DAF88B9DC16")
+                .build();
         adView.loadAd(adRequest);
 
         model = ViewModelProviders.of(this).get(DataViewModel.class);
