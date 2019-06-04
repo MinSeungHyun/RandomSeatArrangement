@@ -61,6 +61,6 @@
     <string name="check_update_key" translatable="false">check_update</string>
 
     <!--AD-->
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/6734529939</string>
-    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/1649724215</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/9856118304</string>
+    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/6655239895</string>
 </resources>
