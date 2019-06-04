@@ -42,4 +42,5 @@ Random Seat Arrangement (랜덤 자리 배치)
 > Splash screen 추가
 
 ## Ver 2.2 (Code 6)
-> 광고 ID 
+> 광고 ID 변경<br>
+> 앱 용량 감소
