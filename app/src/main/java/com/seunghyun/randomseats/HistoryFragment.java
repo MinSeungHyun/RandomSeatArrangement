@@ -26,13 +26,13 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
-
-
-        ArrayList<CardItem> items = new ArrayList<>();
-        items.add(new CardItem("Title1", "Description1", "2019.05.16"));
-        items.add(new CardItem("Title2", "Description2", "2019.05.17"));
-
-        setUpRecyclerView(view, items);
+//
+//
+//        ArrayList<CardItem> items = new ArrayList<>();
+//        items.add(new CardItem("Title1", "Description1", "2019.05.16"));
+//        items.add(new CardItem("Title2", "Description2", "2019.05.17"));
+//
+//        setUpRecyclerView(view, items);
         return view;
     }
 
