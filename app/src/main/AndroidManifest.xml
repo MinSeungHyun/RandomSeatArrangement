@@ -17,7 +17,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5389688178202689~7521353214" />
+            android:value="ca-app-pub-5389688178202689~7991182925" />
 
         <activity
             android:name="com.seunghyun.randomseatarrangement.SplashActivity"
