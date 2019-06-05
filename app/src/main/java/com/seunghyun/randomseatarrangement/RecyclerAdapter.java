@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats;
+package com.seunghyun.randomseatarrangement;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;

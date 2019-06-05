@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats;
+package com.seunghyun.randomseatarrangement;
 
 class CardItem {
     private String titleText, descriptionText, dateText;

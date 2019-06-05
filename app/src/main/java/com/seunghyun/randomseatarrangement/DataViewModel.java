@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats;
+package com.seunghyun.randomseatarrangement;
 
 import android.app.Activity;
 import android.arch.lifecycle.MutableLiveData;

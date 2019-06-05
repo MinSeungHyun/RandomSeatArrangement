@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats;
+package com.seunghyun.randomseatarrangement;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats;
+package com.seunghyun.randomseatarrangement;
 
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;

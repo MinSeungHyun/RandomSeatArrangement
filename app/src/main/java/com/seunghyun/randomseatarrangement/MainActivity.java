@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats;
+package com.seunghyun.randomseatarrangement;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;

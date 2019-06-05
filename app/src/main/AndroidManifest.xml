@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.seunghyun.randomseats">
+    package="com.seunghyun.randomseatarrangement">
 
     <application
         android:allowBackup="true"
@@ -20,7 +20,7 @@
             android:value="ca-app-pub-5389688178202689~7521353214" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name="com.seunghyun.randomseatarrangement.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -32,7 +32,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.seunghyun.randomseatarrangement.MainActivity"
             android:label="@string/app_name" />
 
         <activity
