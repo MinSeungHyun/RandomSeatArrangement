@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/actionSeatAppearance"
+        android:id="@+id/action_seat_appearance"
         android:icon="@drawable/ic_baseline_crop_24px"
         android:title="@string/seat_appearance"
         app:showAsAction="ifRoom" />

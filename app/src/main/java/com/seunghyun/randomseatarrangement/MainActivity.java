@@ -4,15 +4,21 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
@@ -55,6 +61,23 @@ public class MainActivity extends AppCompatActivity {
         drawable.mutate();
         drawable.setColorFilter(getColor(android.R.color.white), PorterDuff.Mode.SRC_ATOP);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_seat_appearance:
+                int width = getResources().getDisplayMetrics().widthPixels;
+                SeatAppearanceDialog dialog = new SeatAppearanceDialog(MainActivity.this, PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
+                WindowManager.LayoutParams windowManager = Objects.requireNonNull(dialog.getWindow()).getAttributes();
+                windowManager.copyFrom(dialog.getWindow().getAttributes());
+                windowManager.width = (int) (width / 1.2);
+                dialog.show();
+                dialog.setOnDismissListener(dialog_ -> model.getIsSeatAppearanceSettingFinished().setValue(true));
+                return true;
+
+            default: return super.onOptionsItemSelected(item);
+        }
     }
 
     private void init() {
