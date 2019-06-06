@@ -23,7 +23,11 @@ class SeatAppearanceDialog(context: Context, sharedPreferences: SharedPreference
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_seat_appearance)
         val editor = sharedPreferences.edit()
+        cancelButton.setOnClickListener {
+            dismiss()
+        }
         okButton.setOnClickListener {
+            editor.apply()
             dismiss()
         }
 
@@ -56,7 +60,6 @@ class SeatAppearanceDialog(context: Context, sharedPreferences: SharedPreference
                         editor.putInt(context.getString(R.string.seat_text_size_key), size)
                     }
                 }
-                editor.apply()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
