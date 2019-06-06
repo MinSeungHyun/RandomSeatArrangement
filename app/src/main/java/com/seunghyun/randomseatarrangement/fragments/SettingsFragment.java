@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement;
+package com.seunghyun.randomseatarrangement.fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.PreferenceManager;
 import android.view.WindowManager;
+
+import com.seunghyun.randomseatarrangement.DataViewModel;
+import com.seunghyun.randomseatarrangement.R;
+import com.seunghyun.randomseatarrangement.SeatAppearanceDialog;
 
 import java.util.Objects;
 

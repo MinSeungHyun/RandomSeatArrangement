@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement;
+package com.seunghyun.randomseatarrangement.recyclerview;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,12 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
-class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
+import com.seunghyun.randomseatarrangement.R;
+
+public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
     private final ColorDrawable background;
     private RecyclerAdapter mAdapter;
     private Drawable icon;
 
-    SwipeToDeleteCallback(Context context, RecyclerAdapter adapter) {
+    public SwipeToDeleteCallback(Context context, RecyclerAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         mAdapter = adapter;
         icon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_delete_24px);

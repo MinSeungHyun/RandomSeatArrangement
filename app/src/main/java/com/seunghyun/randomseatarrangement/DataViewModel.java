@@ -36,7 +36,7 @@ public class DataViewModel extends ViewModel {
     public DataViewModel() {
     }
 
-    static void updateIfRequire(final Activity context, final boolean isNullTextShow) {
+    public static void updateIfRequire(final Activity context, final boolean isNullTextShow) {
         AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(context);
         Task<AppUpdateInfo> appUpdateInfo = appUpdateManager.getAppUpdateInfo();
         appUpdateInfo.addOnCompleteListener(task -> {
@@ -70,7 +70,7 @@ public class DataViewModel extends ViewModel {
         });
     }
 
-    static void makeReview(Context context) {
+    public static void makeReview(Context context) {
         Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
         Log.d("testing", context.getPackageName());
         Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
@@ -81,44 +81,44 @@ public class DataViewModel extends ViewModel {
         }
     }
 
-    MutableLiveData<Integer> getCurrentPage() {
+    public MutableLiveData<Integer> getCurrentPage() {
         if (currentPage == null) currentPage = new MutableLiveData<>();
         return currentPage;
     }
 
-    MutableLiveData<Integer> getCurrentStage() {
+    public MutableLiveData<Integer> getCurrentStage() {
         if (currentStage == null) {
             currentStage = new MutableLiveData<>();
         }
         return currentStage;
     }
 
-    MutableLiveData<Boolean> getIsChangingStage() {
+    public MutableLiveData<Boolean> getIsChangingStage() {
         if (isChangingStage == null) isChangingStage = new MutableLiveData<>();
         return isChangingStage;
     }
 
-    MutableLiveData<ArrayList<Integer>> getRandomNumbers() {
+    public MutableLiveData<ArrayList<Integer>> getRandomNumbers() {
         if (randomNumbers == null) randomNumbers = new MutableLiveData<>();
         return randomNumbers;
     }
 
-    MutableLiveData<ArrayList<String>> getNotUseSeatTags() {
+    public MutableLiveData<ArrayList<String>> getNotUseSeatTags() {
         if (notUseSeatTags == null) notUseSeatTags = new MutableLiveData<>();
         return notUseSeatTags;
     }
 
-    MutableLiveData<ArrayList<String>> getShownSeatsList() {
+    public MutableLiveData<ArrayList<String>> getShownSeatsList() {
         if (shownSeatsList == null) shownSeatsList = new MutableLiveData<>();
         return shownSeatsList;
     }
 
-    MutableLiveData<HashMap<String, String>> getFixedSeatsMap() {
+    public MutableLiveData<HashMap<String, String>> getFixedSeatsMap() {
         if (fixedSeatsMap == null) fixedSeatsMap = new MutableLiveData<>();
         return fixedSeatsMap;
     }
 
-    MutableLiveData<Boolean> getIsSeatAppearanceSettingFinished() {
+    public MutableLiveData<Boolean> getIsSeatAppearanceSettingFinished() {
         if (isSeatAppearanceSettingFinished == null)
             isSeatAppearanceSettingFinished = new MutableLiveData<>();
         return isSeatAppearanceSettingFinished;

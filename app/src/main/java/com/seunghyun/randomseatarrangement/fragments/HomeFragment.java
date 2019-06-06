@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement;
+package com.seunghyun.randomseatarrangement.fragments;
 
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
@@ -35,6 +35,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.seunghyun.randomseatarrangement.DataViewModel;
+import com.seunghyun.randomseatarrangement.R;
+import com.seunghyun.randomseatarrangement.SeatAppearanceDialog;
 import com.warkiz.widget.IndicatorSeekBar;
 import com.warkiz.widget.IndicatorStayLayout;
 import com.warkiz.widget.OnSeekChangeListener;

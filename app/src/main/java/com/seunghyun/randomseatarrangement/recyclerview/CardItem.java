@@ -1,6 +1,6 @@
-package com.seunghyun.randomseatarrangement;
+package com.seunghyun.randomseatarrangement.recyclerview;
 
-class CardItem {
+public class CardItem {
     private String titleText, descriptionText, dateText;
 
     CardItem(String titleTV, String descriptionTV, String dateTV) {

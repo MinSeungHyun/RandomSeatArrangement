@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement;
+package com.seunghyun.randomseatarrangement.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,11 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.seunghyun.randomseatarrangement.recyclerview.CardItem;
+import com.seunghyun.randomseatarrangement.R;
+import com.seunghyun.randomseatarrangement.recyclerview.RecyclerAdapter;
+import com.seunghyun.randomseatarrangement.recyclerview.SwipeToDeleteCallback;
 
 import java.util.ArrayList;
 
