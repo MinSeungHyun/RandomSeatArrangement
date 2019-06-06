@@ -1,11 +1,14 @@
 package com.seunghyun.randomseatarrangement;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.widget.ImageView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -43,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setSelectedItemId(R.id.navigation_home);
         navigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         viewPager.setCurrentItem(1, false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.custom_actionbar, menu);
+        Drawable drawable = menu.getItem(0).getIcon();
+        drawable.mutate();
+        drawable.setColorFilter(getColor(android.R.color.white), PorterDuff.Mode.SRC_ATOP);
+        return true;
     }
 
     private void init() {

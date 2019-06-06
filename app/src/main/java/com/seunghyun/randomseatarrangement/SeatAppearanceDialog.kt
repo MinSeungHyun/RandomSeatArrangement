@@ -73,5 +73,19 @@ class SeatAppearanceDialog(context: Context, sharedPreferences: SharedPreference
         widthSeekBar.progress = (sharedPreferences.getInt(context.getString(R.string.seat_width_key), DEFAULT_SEAT_WIDTH) - 20) / 10
         heightSeekBar.progress = (sharedPreferences.getInt(context.getString(R.string.seat_height_key), DEFAULT_SEAT_HEIGHT) - 20) / 4 - 1
         textSizeSeekBar.progress = (sharedPreferences.getInt(context.getString(R.string.seat_text_size_key), DEFAULT_SEAT_TEXT_SIZE) - 16) / 6 + 1
+        val width = widthSeekBar.progress * 10 + 20
+        with(seatSizeItem) {
+            minimumWidth = dpToPx(width)
+            minWidth = width
+            maxWidth = width
+        }
+        val height = (heightSeekBar.progress + 1) * 4 + 20
+        with(seatSizeItem) {
+            minimumHeight = dpToPx(height)
+            minHeight = height
+            maxHeight = height
+        }
+        val size = (textSizeSeekBar.progress - 1) * 6 + 16
+        seatSizeItem.textSize = size.toFloat()
     }
 }
