@@ -32,6 +32,7 @@
     <string name="item_deleted">항목이 삭제되었습니다.</string>
     <string name="undo">되돌리기</string>
     <string name="ok">확인</string>
+    <string name="screenshot">스크린샷</string>
 
     <!--Preference fragment-->
     <string name="use_seatNumber">좌석 번호 사용</string>

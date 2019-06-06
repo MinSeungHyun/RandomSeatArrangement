@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".activities.FullScreenActivity">
+
+    <ImageView
+        android:id="@+id/virtualActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:contentDescription="@string/description_virtual_actionbar"
+        android:src="@drawable/actionbar_shadow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="@string/description_back_button"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_arrow_back_24px"
+        android:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@id/virtualActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/virtualActionBar" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/virtualActionBar">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalNumberScrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <GridLayout
+                android:id="@+id/horizontalNumberGridLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rowCount="1"
+                android:useDefaultMargins="true" />
+        </HorizontalScrollView>
+
+        <ScrollView
+            android:id="@+id/seatsScrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <GridLayout
+                    android:id="@+id/verticalNumberGridLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:columnCount="1"
+                    android:useDefaultMargins="true" />
+
+                <HorizontalScrollView
+                    android:id="@+id/seatsHorizontalScrollView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fadeScrollbars="false">
+
+                    <GridLayout
+                        android:id="@+id/seatsGridLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:useDefaultMargins="true" />
+                </HorizontalScrollView>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

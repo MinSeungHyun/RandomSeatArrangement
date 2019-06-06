@@ -1,8 +1,8 @@
 package com.seunghyun.randomseatarrangement.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomNavigationView;
@@ -64,9 +64,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         mMenu = menu;
         getMenuInflater().inflate(R.menu.custom_actionbar, menu);
-        Drawable drawable = menu.getItem(0).getIcon();
-        drawable.mutate();
-        drawable.setColorFilter(getColor(android.R.color.white), PorterDuff.Mode.SRC_ATOP);
+        menu.getItem(0).getIcon().mutate().setColorFilter(getColor(android.R.color.white), PorterDuff.Mode.SRC_ATOP);
+        menu.getItem(1).getIcon().mutate().setColorFilter(getColor(android.R.color.white), PorterDuff.Mode.SRC_ATOP);
         return true;
     }
 
@@ -83,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setOnDismissListener(dialog_ -> model.getIsSeatAppearanceSettingFinished().setValue(true));
                 return true;
 
+            case R.id.action_screenshot:
+                startActivity(new Intent(MainActivity.this, FullScreenActivity.class));
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -96,21 +99,31 @@ public class MainActivity extends AppCompatActivity {
                     setTitle(R.string.title_history);
                     viewPager.setCurrentItem(0);
                     model.getCurrentPage().setValue(0);
-                    if (mMenu != null)
+
+                    if (mMenu != null) {
                         mMenu.findItem(R.id.action_seat_appearance).setVisible(false);
+                        mMenu.findItem(R.id.action_screenshot).setVisible(false);
+                    }
                     return true;
                 case R.id.navigation_home:
                     setTitle(R.string.title_home);
                     viewPager.setCurrentItem(1);
                     model.getCurrentPage().setValue(1);
-                    if (mMenu != null) mMenu.findItem(R.id.action_seat_appearance).setVisible(true);
+
+                    if (mMenu != null) {
+                        mMenu.findItem(R.id.action_seat_appearance).setVisible(true);
+                        mMenu.findItem(R.id.action_screenshot).setVisible(true);
+                    }
                     return true;
                 case R.id.navigation_settings:
                     setTitle(R.string.title_settings);
                     viewPager.setCurrentItem(2);
                     model.getCurrentPage().setValue(2);
-                    if (mMenu != null)
+
+                    if (mMenu != null) {
                         mMenu.findItem(R.id.action_seat_appearance).setVisible(false);
+                        mMenu.findItem(R.id.action_screenshot).setVisible(false);
+                    }
                     return true;
             }
             return false;

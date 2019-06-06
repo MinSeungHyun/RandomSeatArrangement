@@ -53,8 +53,8 @@ import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
+    public static int row, column;
     private final int RESET_COUNT_TO_SHOW_REVIEW = 5;
-
     private IndicatorSeekBar rowSeekBar, columnSeekBar;
     private IndicatorStayLayout indicatorStayLayout;
     private GridLayout seatsGridLayout, verticalNumberGridLayout, horizontalNumberGridLayout;
@@ -72,7 +72,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private SharedPreferences.Editor preferenceEditor;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private boolean isChangingTrigger = false; //onStageButtonClickListener 와 bottomSheetCallback 간의 통신을 위함
-    private int row, column;
     private float mX = 0;
     private boolean isNotFirstTouch = true;
     private String rowSeatNumberType, columnSeatNumberType;
@@ -490,7 +489,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (randomNumberList != null) {
             String[] splitString = tag.split(":");
             int row = Integer.valueOf(splitString[0]), column = Integer.valueOf(splitString[1]);
-            int index = (row - 1) * this.column + column - 1;
+            int index = (row - 1) * HomeFragment.column + column - 1;
             if (randomNumberList.get(index) != -1) {
                 ((TextView) seatsGridLayout.findViewWithTag(tag)).setText(String.valueOf(randomNumberList.get(index)));
             }

@@ -20,7 +20,11 @@
             android:value="ca-app-pub-5389688178202689~7991182925" />
 
         <activity
-            android:name="com.seunghyun.randomseatarrangement.activities.SplashActivity"
+            android:name=".activities.FullScreenActivity"
+            android:theme="@style/FullScreenTheme" />
+
+        <activity
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -30,14 +34,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.seunghyun.randomseatarrangement.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" />
-
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
     </application>
+
 </manifest>
