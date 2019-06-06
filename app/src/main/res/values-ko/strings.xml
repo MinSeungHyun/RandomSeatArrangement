@@ -31,6 +31,7 @@
     <string name="show_all_helper">각각의 자리를 클릭하여 하나의 번호씩 보거나, 아래 버튼을 클릭하여 모두 볼 수 있습니다.</string>
     <string name="item_deleted">항목이 삭제되었습니다.</string>
     <string name="undo">되돌리기</string>
+    <string name="ok">확인</string>
 
     <!--Preference fragment-->
     <string name="use_seatNumber">좌석 번호 사용</string>
@@ -45,4 +46,8 @@
     <string name="review">스토어에 리뷰 남기기</string>
     <string name="send_email">개발자에게 이메일 보내기</string>
     <string name="check_update">업데이트 확인</string>
+    <string name="seat_appearance">좌석 외관</string>
+    <string name="seat_width">가로</string>
+    <string name="seat_height">세로</string>
+    <string name="seat_text_size">글씨 크기</string>
 </resources>

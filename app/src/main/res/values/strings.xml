@@ -38,6 +38,7 @@
     <string name="show_all_helper">Click each seat to see a single number, or click the button below to view all of them.</string>
     <string name="item_deleted">An item deleted.</string>
     <string name="undo">Undo</string>
+    <string name="ok">OK</string>
 
     <!--Preference fragment-->
     <string name="use_seatNumber">Use seat number</string>
@@ -59,6 +60,11 @@
     <string name="send_email_key" translatable="false">send_email</string>
     <string name="check_update">Check for update</string>
     <string name="check_update_key" translatable="false">check_update</string>
+    <string name="seat_appearance">Seat appearance</string>
+    <string name="seat_width">Width</string>
+    <string name="seat_height">Height</string>
+    <string name="seat_text_size">Text size</string>
+    <string name="seat_size_key" translatable="false">seat_size</string>
 
     <!--AD-->
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/7327293350</string>

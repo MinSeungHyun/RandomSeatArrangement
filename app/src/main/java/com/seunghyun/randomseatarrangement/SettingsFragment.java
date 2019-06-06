@@ -10,6 +10,9 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.PreferenceManager;
+import android.view.WindowManager;
+
+import java.util.Objects;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
     private ListPreference rowSeatNumber, columnSeatNumber;
@@ -45,6 +48,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         rowSeatNumber.setSummary(sharedPreferences.getString(getString(R.string.row_seat_number_key), getString(R.string.alphabet)));
         columnSeatNumber.setSummary(sharedPreferences.getString(getString(R.string.column_seat_number_key), getString(R.string.number)));
 
+        //좌석 크기
+        findPreference(getString(R.string.seat_size_key)).setOnPreferenceClickListener(preference -> {
+            int width = requireContext().getResources().getDisplayMetrics().widthPixels;
+            SeatAppearanceDialog dialog = new SeatAppearanceDialog(requireContext());
+
+            WindowManager.LayoutParams windowManager = Objects.requireNonNull(dialog.getWindow()).getAttributes();
+            windowManager.copyFrom(dialog.getWindow().getAttributes());
+            windowManager.width = (int) (width / 1.2);
+            dialog.show();
+
+            dialog.setOnDismissListener(dialog1 -> {
+            });
+            return false;
+        });
         //리뷰 남기기
         Preference review = findPreference(getString(R.string.review_key));
         review.setOnPreferenceClickListener(preference -> {

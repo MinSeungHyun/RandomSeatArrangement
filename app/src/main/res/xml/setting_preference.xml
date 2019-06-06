@@ -21,6 +21,11 @@
             android:key="@string/column_seat_number_key"
             android:summary="@string/number"
             android:title="@string/column_seat_number" />
+
+        <Preference
+            android:icon="@drawable/ic_baseline_aspect_ratio_24px"
+            android:key="@string/seat_size_key"
+            android:title="@string/seat_appearance" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/etc">
