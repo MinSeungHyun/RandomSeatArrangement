@@ -9,7 +9,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager.OnPageChangeListener pageChangeListener;
 
     private DataViewModel model;
+    private Menu mMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
+        mMenu = menu;
         getMenuInflater().inflate(R.menu.custom_actionbar, menu);
         Drawable drawable = menu.getItem(0).getIcon();
         drawable.mutate();
@@ -64,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.action_seat_appearance:
                 int width = getResources().getDisplayMetrics().widthPixels;
                 SeatAppearanceDialog dialog = new SeatAppearanceDialog(MainActivity.this, PreferenceManager.getDefaultSharedPreferences(MainActivity.this));
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setOnDismissListener(dialog_ -> model.getIsSeatAppearanceSettingFinished().setValue(true));
                 return true;
 
-            default: return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -88,16 +90,21 @@ public class MainActivity extends AppCompatActivity {
                     setTitle(R.string.title_history);
                     viewPager.setCurrentItem(0);
                     model.getCurrentPage().setValue(0);
+                    if (mMenu != null)
+                        mMenu.findItem(R.id.action_seat_appearance).setVisible(false);
                     return true;
                 case R.id.navigation_home:
                     setTitle(R.string.title_home);
                     viewPager.setCurrentItem(1);
                     model.getCurrentPage().setValue(1);
+                    if (mMenu != null) mMenu.findItem(R.id.action_seat_appearance).setVisible(true);
                     return true;
                 case R.id.navigation_settings:
                     setTitle(R.string.title_settings);
                     viewPager.setCurrentItem(2);
                     model.getCurrentPage().setValue(2);
+                    if (mMenu != null)
+                        mMenu.findItem(R.id.action_seat_appearance).setVisible(false);
                     return true;
             }
             return false;
