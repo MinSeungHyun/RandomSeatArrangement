@@ -23,7 +23,7 @@
             android:title="@string/column_seat_number" />
 
         <Preference
-            android:icon="@drawable/ic_baseline_aspect_ratio_24px"
+            android:icon="@drawable/ic_baseline_crop_24px"
             android:key="@string/seat_appearance_key"
             android:title="@string/seat_appearance" />
     </PreferenceCategory>

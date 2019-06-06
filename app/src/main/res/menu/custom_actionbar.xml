@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/actionSeatAppearance"
-        android:icon="@drawable/ic_baseline_aspect_ratio_24px"
+        android:icon="@drawable/ic_baseline_crop_24px"
         android:title="@string/seat_appearance"
         app:showAsAction="ifRoom" />
 </menu>
