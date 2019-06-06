@@ -2,16 +2,27 @@ package com.seunghyun.randomseatarrangement
 
 import android.app.Dialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.view.Window
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.dialog_seat_appearance.*
 
-class SeatAppearanceDialog(context: Context) : Dialog(context) {
+class SeatAppearanceDialog(context: Context, sharedPreferences: SharedPreferences) : Dialog(context) {
+    companion object {
+        const val DEFAULT_SEAT_WIDTH = 40
+        const val DEFAULT_SEAT_HEIGHT = 40
+        const val DEFAULT_SEAT_TEXT_SIZE = 16
+
+        fun dpToPx(dp: Int): Int {
+            return (dp * Resources.getSystem().displayMetrics.density).toInt()
+        }
+    }
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_seat_appearance)
+        val editor = sharedPreferences.edit()
         okButton.setOnClickListener {
             dismiss()
         }
@@ -26,6 +37,7 @@ class SeatAppearanceDialog(context: Context) : Dialog(context) {
                             minWidth = width
                             maxWidth = width
                         }
+                        editor.putInt(context.getString(R.string.seat_width_key), width)
                     }
 
                     heightSeekBar -> {
@@ -35,13 +47,16 @@ class SeatAppearanceDialog(context: Context) : Dialog(context) {
                             minHeight = height
                             maxHeight = height
                         }
+                        editor.putInt(context.getString(R.string.seat_height_key), height)
                     }
 
                     textSizeSeekBar -> {
                         val size = (progress - 1) * 6 + 16
                         seatSizeItem.textSize = size.toFloat()
+                        editor.putInt(context.getString(R.string.seat_text_size_key), size)
                     }
                 }
+                editor.apply()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -54,9 +69,9 @@ class SeatAppearanceDialog(context: Context) : Dialog(context) {
             heightSeekBar.setOnSeekBarChangeListener(this)
             textSizeSeekBar.setOnSeekBarChangeListener(this)
         }
-    }
 
-    fun dpToPx(dp: Int): Int {
-        return (dp * Resources.getSystem().displayMetrics.density).toInt()
+        widthSeekBar.progress = (sharedPreferences.getInt(context.getString(R.string.seat_width_key), DEFAULT_SEAT_WIDTH) - 20) / 10
+        heightSeekBar.progress = (sharedPreferences.getInt(context.getString(R.string.seat_height_key), DEFAULT_SEAT_HEIGHT) - 20) / 4 - 1
+        textSizeSeekBar.progress = (sharedPreferences.getInt(context.getString(R.string.seat_text_size_key), DEFAULT_SEAT_TEXT_SIZE) - 16) / 6 + 1
     }
 }

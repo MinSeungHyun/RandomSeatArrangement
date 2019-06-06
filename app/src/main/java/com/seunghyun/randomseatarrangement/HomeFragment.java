@@ -164,6 +164,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         };
         model.getFixedSeatsMap().observe(this, fixedSeatsMapListener);
 
+        model.getIsSeatAppearanceSettingFinished().observe(this, aBoolean -> {
+            if (aBoolean != null && aBoolean) {
+                makeGrid();
+                updateState();
+                model.getIsSeatAppearanceSettingFinished().setValue(false);
+            }
+        });
+
         rowSeatNumberType = preference.getString(getString(R.string.row_seat_number_key), getString(R.string.alphabet));
         columnSeatNumberType = preference.getString(getString(R.string.column_seat_number_key), getString(R.string.number));
         preferenceChangeListener = (sharedPreferences, key) -> {
@@ -379,6 +387,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         row = rowSeekBar.getProgress();
         column = columnSeekBar.getProgress();
         boolean isSeatNumberShow = preference.getBoolean(getString(R.string.use_seatNumber_key), false);
+        int seatWidth = preference.getInt(getString(R.string.seat_width_key), SeatAppearanceDialog.DEFAULT_SEAT_WIDTH);
+        int seatHeight = preference.getInt(getString(R.string.seat_height_key), SeatAppearanceDialog.DEFAULT_SEAT_HEIGHT);
+        int textSize = preference.getInt(getString(R.string.seat_text_size_key), SeatAppearanceDialog.DEFAULT_SEAT_TEXT_SIZE);
         float scale = getResources().getDisplayMetrics().density;
         int _16dp = (int) (16 * scale + 0.5f);
         int _8dp = (int) (8 * scale + 0.5f);
@@ -396,6 +407,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 textView.setTag(i + ":" + j);
                 textView.setOnClickListener(this);
                 seatsGridLayout.addView(textView);
+
+                textView.setMinimumWidth(SeatAppearanceDialog.Companion.dpToPx(seatWidth));
+                textView.setMinWidth(seatWidth);
+                textView.setMaxWidth(seatWidth);
+                textView.setMinimumHeight(SeatAppearanceDialog.Companion.dpToPx(seatHeight));
+                textView.setMinHeight(seatHeight);
+                textView.setMaxHeight(seatHeight);
+                textView.setTextSize(textSize);
             }
             if (isSeatNumberShow) {
                 //행 번호

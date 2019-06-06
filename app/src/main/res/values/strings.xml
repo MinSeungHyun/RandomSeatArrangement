@@ -64,7 +64,10 @@
     <string name="seat_width">Width</string>
     <string name="seat_height">Height</string>
     <string name="seat_text_size">Text size</string>
-    <string name="seat_size_key" translatable="false">seat_size</string>
+    <string name="seat_appearance_key" translatable="false">seat_appearance</string>
+    <string name="seat_width_key" translatable="false">seat_width</string>
+    <string name="seat_height_key" translatable="false">seat_height</string>
+    <string name="seat_text_size_key" translatable="false">seat_text_size</string>
 
     <!--AD-->
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/7327293350</string>

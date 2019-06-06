@@ -1,10 +1,12 @@
 package com.seunghyun.randomseatarrangement;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -36,6 +38,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.setting_preference);
+
+        DataViewModel model = ViewModelProviders.of(requireActivity()).get(DataViewModel.class);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
@@ -49,17 +54,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         columnSeatNumber.setSummary(sharedPreferences.getString(getString(R.string.column_seat_number_key), getString(R.string.number)));
 
         //좌석 크기
-        findPreference(getString(R.string.seat_size_key)).setOnPreferenceClickListener(preference -> {
+        findPreference(getString(R.string.seat_appearance_key)).setOnPreferenceClickListener(preference -> {
             int width = requireContext().getResources().getDisplayMetrics().widthPixels;
-            SeatAppearanceDialog dialog = new SeatAppearanceDialog(requireContext());
+            SeatAppearanceDialog dialog = new SeatAppearanceDialog(requireContext(), sharedPreferences);
 
             WindowManager.LayoutParams windowManager = Objects.requireNonNull(dialog.getWindow()).getAttributes();
             windowManager.copyFrom(dialog.getWindow().getAttributes());
             windowManager.width = (int) (width / 1.2);
             dialog.show();
-
-            dialog.setOnDismissListener(dialog1 -> {
-            });
+            dialog.setOnDismissListener(dialog_ -> model.getIsSeatAppearanceSettingFinished().setValue(true));
             return false;
         });
         //리뷰 남기기

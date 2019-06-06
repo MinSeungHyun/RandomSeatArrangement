@@ -24,7 +24,7 @@
 
         <Preference
             android:icon="@drawable/ic_baseline_aspect_ratio_24px"
-            android:key="@string/seat_size_key"
+            android:key="@string/seat_appearance_key"
             android:title="@string/seat_appearance" />
     </PreferenceCategory>
 

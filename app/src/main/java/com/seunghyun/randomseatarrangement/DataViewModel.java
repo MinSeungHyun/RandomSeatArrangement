@@ -31,6 +31,7 @@ public class DataViewModel extends ViewModel {
     private MutableLiveData<ArrayList<String>> notUseSeatTags;
     private MutableLiveData<ArrayList<String>> shownSeatsList;
     private MutableLiveData<HashMap<String, String>> fixedSeatsMap;
+    private MutableLiveData<Boolean> isSeatAppearanceSettingFinished;
 
     public DataViewModel() {
     }
@@ -44,7 +45,8 @@ public class DataViewModel extends ViewModel {
                 try {
                     updateInfo = task.getResult();
                 } catch (RuntimeExecutionException e) { //구글 플레이 연결이 되지 않으면
-                    if(isNullTextShow) Toast.makeText(context, R.string.connect_failed, Toast.LENGTH_LONG).show();
+                    if (isNullTextShow)
+                        Toast.makeText(context, R.string.connect_failed, Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                     return;
                 }
@@ -114,5 +116,11 @@ public class DataViewModel extends ViewModel {
     MutableLiveData<HashMap<String, String>> getFixedSeatsMap() {
         if (fixedSeatsMap == null) fixedSeatsMap = new MutableLiveData<>();
         return fixedSeatsMap;
+    }
+
+    MutableLiveData<Boolean> getIsSeatAppearanceSettingFinished() {
+        if (isSeatAppearanceSettingFinished == null)
+            isSeatAppearanceSettingFinished = new MutableLiveData<>();
+        return isSeatAppearanceSettingFinished;
     }
 }
