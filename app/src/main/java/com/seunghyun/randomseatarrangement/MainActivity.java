@@ -50,14 +50,17 @@ public class MainActivity extends AppCompatActivity {
         navigationItemSelectedListener = menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.navigation_history:
+                    setTitle(R.string.title_history);
                     viewPager.setCurrentItem(0);
                     model.getCurrentPage().setValue(0);
                     return true;
                 case R.id.navigation_home:
+                    setTitle(R.string.title_home);
                     viewPager.setCurrentItem(1);
                     model.getCurrentPage().setValue(1);
                     return true;
                 case R.id.navigation_settings:
+                    setTitle(R.string.title_settings);
                     viewPager.setCurrentItem(2);
                     model.getCurrentPage().setValue(2);
                     return true;
