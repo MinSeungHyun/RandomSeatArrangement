@@ -3,6 +3,7 @@ package com.seunghyun.randomseatarrangement.fragments;
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -38,7 +39,9 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.seunghyun.randomseatarrangement.DataViewModel;
 import com.seunghyun.randomseatarrangement.R;
+import com.seunghyun.randomseatarrangement.RequestGridBitmap;
 import com.seunghyun.randomseatarrangement.SeatAppearanceDialog;
+import com.seunghyun.randomseatarrangement.activities.FullScreenActivity;
 import com.warkiz.widget.IndicatorSeekBar;
 import com.warkiz.widget.IndicatorStayLayout;
 import com.warkiz.widget.OnSeekChangeListener;
@@ -54,8 +57,9 @@ import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    public static int row, column;
+    public static RequestGridBitmap requestGridBitmap;
     private final int RESET_COUNT_TO_SHOW_REVIEW = 5;
+    private int row, column;
     private IndicatorSeekBar rowSeekBar, columnSeekBar;
     private IndicatorStayLayout indicatorStayLayout;
     private GridLayout seatsGridLayout, verticalNumberGridLayout, horizontalNumberGridLayout;
@@ -120,6 +124,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         makeRandomList();
                         stageButton.setText(getString(R.string.show_all));
                         model.getCurrentStage().setValue(2);
+
+                        for (String tag : fixedSeatsMap.keySet()) showSeat(tag);
                         break;
                     case 2:
                         //자리 확인 단계 -> 초기화 단계
@@ -311,6 +317,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         horizontalNumberScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> seatsGridHorizontalScrollView.setScrollX(scrollX));
         seatsGridHorizontalScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> horizontalNumberScrollView.setScrollX(scrollX));
+
+        requestGridBitmap = () -> {
+            ArrayList<Bitmap> bitmaps = new ArrayList<>();
+            bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(horizontalNumberGridLayout));
+            bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(verticalNumberGridLayout));
+            bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(seatsGridLayout));
+            return bitmaps;
+        };
     }
 
     @Override
@@ -373,13 +387,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         case 2:
                             //자리 확인 단계일 때
                             showSeat(tag);
-                            ArrayList<String> shownSeatsList = model.getShownSeatsList().getValue() == null ? new ArrayList<>() : model.getShownSeatsList().getValue();
-                            shownSeatsList.add(tag);
-                            model.getShownSeatsList().setValue(shownSeatsList);
-                            if (shownSeatsList.size() == row * column - notUseSeatTags.size()) {
-                                isChangingTrigger = true;
-                                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED); //go to isChangingStageObserver
-                            }
                             break;
                     }
                 }
@@ -409,7 +416,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 TextView textView = (TextView) inflater.inflate(R.layout.grid_item, seatsGridLayout, false);
                 textView.setTag(i + ":" + j);
                 textView.setOnClickListener(this);
-                textView.setBackground(requireContext().getDrawable(R.drawable.rounded_square));
+                textView.setBackgroundResource(R.drawable.rounded_square);
                 seatsGridLayout.addView(textView);
 
                 textView.setMinimumWidth(SeatAppearanceDialog.Companion.dpToPx(seatWidth));
@@ -497,10 +504,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (randomNumberList != null) {
             String[] splitString = tag.split(":");
             int row = Integer.valueOf(splitString[0]), column = Integer.valueOf(splitString[1]);
-            int index = (row - 1) * HomeFragment.column + column - 1;
+            int index = (row - 1) * this.column + column - 1;
             if (randomNumberList.get(index) != -1) {
                 ((TextView) seatsGridLayout.findViewWithTag(tag)).setText(String.valueOf(randomNumberList.get(index)));
             }
+        }
+        ArrayList<String> shownSeatsList = model.getShownSeatsList().getValue() == null ? new ArrayList<>() : model.getShownSeatsList().getValue();
+        if (!shownSeatsList.contains(tag)) shownSeatsList.add(tag);
+        model.getShownSeatsList().setValue(shownSeatsList);
+
+        if (shownSeatsList.size() == row * column - notUseSeatTags.size()) {
+            isChangingTrigger = true;
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED); //go to isChangingStageObserver
         }
     }
 
@@ -523,6 +538,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void updateState() {
         if (model.getCurrentStage().getValue() != null) {
+            updateFixedSeats();
+            updateNotUseSeat();
             switch (model.getCurrentStage().getValue()) {
                 case 1:
                     //자리 설정 단계
@@ -562,7 +579,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void updateNotUseSeat() {
-        if (model.getCurrentStage().getValue() != null && model.getCurrentStage().getValue() == 1) {
+        if (model.getCurrentStage().getValue() != null) {
             HashMap<String, String> temp = new HashMap<>(fixedSeatsMap); //오류 방지를 위해 임시 배열에서 작업
             for (String tag : fixedSeatsMap.keySet()) { //고정된 자리가 자리 갯수의 범위를 벗어나거나 사용하지 않는 자리로 지정된 경우 삭제
                 int numberOfSeats = row * column - notUseSeatTags.size();
