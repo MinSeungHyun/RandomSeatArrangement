@@ -427,6 +427,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     textView.setText(String.valueOf(Character.toChars('A' + i - 1)));
                 else textView.setText(String.valueOf(i));
                 verticalNumberGridLayout.addView(textView);
+                textView.setMinimumHeight(SeatAppearanceDialog.Companion.dpToPx(seatHeight));
+                textView.setMinHeight(seatHeight);
+                textView.setMaxHeight(seatHeight);
             }
         }
         if (isSeatNumberShow) {
@@ -437,6 +440,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     textView.setText(String.valueOf(Character.toChars('A' + i - 1)));
                 else textView.setText(String.valueOf(i));
                 horizontalNumberGridLayout.addView(textView);
+                textView.setMinimumWidth(SeatAppearanceDialog.Companion.dpToPx(seatWidth));
+                textView.setMinWidth(seatWidth);
+                textView.setMaxWidth(seatWidth);
             }
             new WaitViewsToBeShown().start(); //WaitViewsToBeShown will set Padding
         }
