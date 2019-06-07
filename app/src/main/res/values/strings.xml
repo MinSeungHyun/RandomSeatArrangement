@@ -73,6 +73,7 @@
     <string name="seat_text_size_key" translatable="false">seat_text_size</string>
 
     <!--AD-->
+    <string name="app_id" translatable="false">ca-app-pub-5389688178202689~7991182925</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/7327293350</string>
     <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/7135721664</string>
 </resources>

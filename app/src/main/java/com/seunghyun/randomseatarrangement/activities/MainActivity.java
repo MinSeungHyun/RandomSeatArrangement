@@ -17,7 +17,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.seunghyun.randomseatarrangement.DataViewModel;
 import com.seunghyun.randomseatarrangement.R;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         DataViewModel.updateIfRequire(this, false);
 
         //Init ad
+        MobileAds.initialize(getApplicationContext(), getString(R.string.app_id));
         AdView adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
