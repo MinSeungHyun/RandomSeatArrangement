@@ -21,7 +21,7 @@
 
         <activity
             android:name=".activities.FullScreenActivity"
-            android:theme="@style/FullScreenTheme" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
             android:name=".activities.SplashActivity"
