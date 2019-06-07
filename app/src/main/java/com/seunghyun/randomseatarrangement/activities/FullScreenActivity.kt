@@ -17,7 +17,12 @@ class FullScreenActivity : AppCompatActivity() {
         backButton.setOnClickListener { finish() }
 
         val bitmaps = HomeFragment.requestGridBitmap.getBitmaps()
-        photoView.setImageBitmap(bitmaps[2])
+        val bitmap = Bitmap.createBitmap(bitmaps[2].width + bitmaps[0].width, bitmaps[1].height + bitmaps[0].height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawBitmap(bitmaps[1], bitmaps[2].width.toFloat(), 0f, null)
+        canvas.drawBitmap(bitmaps[2], 0f, bitmaps[1].height.toFloat(), null)
+        canvas.drawBitmap(bitmaps[0], bitmaps[2].width.toFloat(), bitmaps[1].height.toFloat(), null)
+        photoView.setImageBitmap(bitmap)
     }
 
     companion object {

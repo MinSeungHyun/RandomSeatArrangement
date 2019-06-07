@@ -320,9 +320,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         requestGridBitmap = () -> {
             ArrayList<Bitmap> bitmaps = new ArrayList<>();
-            bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(horizontalNumberGridLayout));
-            bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(verticalNumberGridLayout));
             bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(seatsGridLayout));
+            if (preference.getBoolean(getString(R.string.use_seatNumber_key), false)) {
+                bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(horizontalNumberGridLayout));
+                bitmaps.add(FullScreenActivity.Companion.convertViewToBitmap(verticalNumberGridLayout));
+            }
             return bitmaps;
         };
     }
