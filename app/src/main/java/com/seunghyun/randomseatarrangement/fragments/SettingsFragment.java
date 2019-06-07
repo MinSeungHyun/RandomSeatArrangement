@@ -1,18 +1,19 @@
 package com.seunghyun.randomseatarrangement.fragments;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.PreferenceGroup;
-import android.support.v7.preference.PreferenceManager;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceManager;
 
 import com.seunghyun.randomseatarrangement.DataViewModel;
 import com.seunghyun.randomseatarrangement.R;
@@ -88,7 +89,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         //업데이트 확인
         Preference checkUpdate = findPreference(getString(R.string.check_update_key));
         checkUpdate.setOnPreferenceClickListener(preference -> {
-            DataViewModel.updateIfRequire(requireActivity(), true);
+            DataViewModel.updateIfRequire((AppCompatActivity) requireActivity(), true);
             return false;
         });
 

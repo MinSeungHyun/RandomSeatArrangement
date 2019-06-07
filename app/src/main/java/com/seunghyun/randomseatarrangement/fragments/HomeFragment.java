@@ -2,19 +2,19 @@ package com.seunghyun.randomseatarrangement.fragments;
 
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -408,6 +408,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 TextView textView = (TextView) inflater.inflate(R.layout.grid_item, seatsGridLayout, false);
                 textView.setTag(i + ":" + j);
                 textView.setOnClickListener(this);
+                textView.setBackground(requireContext().getDrawable(R.drawable.rounded_square));
                 seatsGridLayout.addView(textView);
 
                 textView.setMinimumWidth(SeatAppearanceDialog.Companion.dpToPx(seatWidth));

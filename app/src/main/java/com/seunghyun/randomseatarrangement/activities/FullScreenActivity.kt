@@ -2,12 +2,11 @@ package com.seunghyun.randomseatarrangement.activities
 
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v4.app.FragmentActivity
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.seunghyun.randomseatarrangement.R
 import com.seunghyun.randomseatarrangement.SeatAppearanceDialog
 import com.seunghyun.randomseatarrangement.fragments.HomeFragment
@@ -55,12 +54,13 @@ class FullScreenActivity : AppCompatActivity() {
     private fun makeGrid(row: Int, column: Int, isSeatNumberShow: Boolean, rowSeatNumberType: String, columnSeatNumberType: String, seatWidth: Int, seatHeight: Int, textSize: Int) {
         seatsGridLayout.rowCount = row
         seatsGridLayout.columnCount = column
-        val inflater = Objects.requireNonNull<FragmentActivity>(this).applicationContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = Objects.requireNonNull<AppCompatActivity>(this).applicationContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         for (i in 1..row) {
             for (j in 1..column) {
                 val textView = inflater.inflate(R.layout.grid_item, seatsGridLayout, false) as TextView
                 seatsGridLayout.addView(textView)
                 with(textView) {
+                    background = getDrawable(R.drawable.rounded_square)
                     minimumWidth = SeatAppearanceDialog.dpToPx(seatWidth)
                     minWidth = seatWidth
                     maxWidth = seatWidth

@@ -1,14 +1,14 @@
 package com.seunghyun.randomseatarrangement;
 
-import android.app.Activity;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.net.Uri;
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -36,7 +36,7 @@ public class DataViewModel extends ViewModel {
     public DataViewModel() {
     }
 
-    public static void updateIfRequire(final Activity context, final boolean isNullTextShow) {
+    public static void updateIfRequire(final AppCompatActivity context, final boolean isNullTextShow) {
         AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(context);
         Task<AppUpdateInfo> appUpdateInfo = appUpdateManager.getAppUpdateInfo();
         appUpdateInfo.addOnCompleteListener(task -> {

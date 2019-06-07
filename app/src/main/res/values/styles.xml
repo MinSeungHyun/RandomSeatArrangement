@@ -15,7 +15,7 @@
     </style>
 
     <style name="GridItemTextView">
-        <item name="android:background">@drawable/rounded_square</item>
+        <item name="background">@drawable/rounded_square</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:gravity">center</item>
