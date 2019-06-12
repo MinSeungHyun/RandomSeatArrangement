@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement.activities;
+package com.seunghyun.randomseats.activities;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -17,16 +17,15 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.seunghyun.randomseatarrangement.DataViewModel;
-import com.seunghyun.randomseatarrangement.R;
-import com.seunghyun.randomseatarrangement.SeatAppearanceDialog;
-import com.seunghyun.randomseatarrangement.fragments.HistoryFragment;
-import com.seunghyun.randomseatarrangement.fragments.HomeFragment;
-import com.seunghyun.randomseatarrangement.fragments.SettingsFragment;
+import com.seunghyun.randomseats.DataViewModel;
+import com.seunghyun.randomseats.R;
+import com.seunghyun.randomseats.SeatAppearanceDialog;
+import com.seunghyun.randomseats.fragments.HistoryFragment;
+import com.seunghyun.randomseats.fragments.HomeFragment;
+import com.seunghyun.randomseats.fragments.SettingsFragment;
 
 import java.util.Objects;
 

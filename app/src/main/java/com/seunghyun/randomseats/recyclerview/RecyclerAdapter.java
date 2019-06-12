@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement.recyclerview;
+package com.seunghyun.randomseats.recyclerview;
 
 import androidx.annotation.NonNull;
 import com.google.android.material.snackbar.Snackbar;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.seunghyun.randomseatarrangement.R;
+import com.seunghyun.randomseats.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement.recyclerview;
+package com.seunghyun.randomseats.recyclerview;
 
 public class CardItem {
     private String titleText, descriptionText, dateText;

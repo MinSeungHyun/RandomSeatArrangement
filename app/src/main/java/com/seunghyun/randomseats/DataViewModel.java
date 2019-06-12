@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement;
+package com.seunghyun.randomseats;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

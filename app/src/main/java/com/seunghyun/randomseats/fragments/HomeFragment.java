@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement.fragments;
+package com.seunghyun.randomseats.fragments;
 
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
@@ -37,11 +37,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.seunghyun.randomseatarrangement.DataViewModel;
-import com.seunghyun.randomseatarrangement.R;
-import com.seunghyun.randomseatarrangement.RequestGridBitmap;
-import com.seunghyun.randomseatarrangement.SeatAppearanceDialog;
-import com.seunghyun.randomseatarrangement.activities.FullScreenActivity;
+import com.seunghyun.randomseats.DataViewModel;
+import com.seunghyun.randomseats.R;
+import com.seunghyun.randomseats.RequestGridBitmap;
+import com.seunghyun.randomseats.SeatAppearanceDialog;
+import com.seunghyun.randomseats.activities.FullScreenActivity;
 import com.warkiz.widget.IndicatorSeekBar;
 import com.warkiz.widget.IndicatorStayLayout;
 import com.warkiz.widget.OnSeekChangeListener;

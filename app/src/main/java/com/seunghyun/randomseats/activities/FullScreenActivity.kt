@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement.activities
+package com.seunghyun.randomseats.activities
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.seunghyun.randomseatarrangement.R
-import com.seunghyun.randomseatarrangement.fragments.HomeFragment
+import com.seunghyun.randomseats.R
+import com.seunghyun.randomseats.fragments.HomeFragment
 import kotlinx.android.synthetic.main.activity_full_screen.*
 
 

@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement.activities;
+package com.seunghyun.randomseats.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.seunghyun.randomseatarrangement.R;
+import com.seunghyun.randomseats.R;
 
 public class SplashActivity extends AppCompatActivity {
 

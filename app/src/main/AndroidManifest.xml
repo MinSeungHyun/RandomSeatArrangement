@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.seunghyun.randomseatarrangement">
+    package="com.seunghyun.randomseats">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -22,11 +22,11 @@
             android:value="@string/app_id" />
 
         <activity
-            android:name=".activities.FullScreenActivity"
+            android:name="com.seunghyun.randomseats.activities.FullScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="com.seunghyun.randomseats.activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.seunghyun.randomseats.activities.MainActivity"
             android:label="@string/app_name" />
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

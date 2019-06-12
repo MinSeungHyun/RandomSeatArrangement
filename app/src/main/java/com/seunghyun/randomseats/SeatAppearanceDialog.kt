@@ -1,4 +1,4 @@
-package com.seunghyun.randomseatarrangement
+package com.seunghyun.randomseats
 
 import android.app.Dialog
 import android.content.Context
