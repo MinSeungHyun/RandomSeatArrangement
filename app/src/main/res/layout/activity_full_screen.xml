@@ -24,16 +24,31 @@
 
     <ImageView
         android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:contentDescription="@string/description_back_button"
         android:focusable="true"
+        android:padding="12dp"
+        android:src="@drawable/ic_baseline_arrow_back_24px"
         android:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@id/virtualActionBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/virtualActionBar"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24px" />
+        app:layout_constraintTop_toTopOf="@id/virtualActionBar" />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/saveButton"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+        <!--android:clickable="true"-->
+        <!--android:contentDescription="@string/description_save_button"-->
+        <!--android:focusable="true"-->
+        <!--android:padding="12dp"-->
+        <!--android:src="@drawable/ic_baseline_save_alt_24px"-->
+        <!--android:tint="@android:color/white"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/virtualActionBar"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

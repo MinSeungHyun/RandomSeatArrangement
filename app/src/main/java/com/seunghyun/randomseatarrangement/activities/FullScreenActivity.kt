@@ -10,34 +10,69 @@ import com.seunghyun.randomseatarrangement.R
 import com.seunghyun.randomseatarrangement.fragments.HomeFragment
 import kotlinx.android.synthetic.main.activity_full_screen.*
 
+
 class FullScreenActivity : AppCompatActivity() {
+    private lateinit var bitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_full_screen)
+
         backButton.setOnClickListener { finish() }
+
         photoView.setOnClickListener {
             if (virtualActionBar.visibility == View.VISIBLE) {
                 virtualActionBar.visibility = View.GONE
                 backButton.visibility = View.GONE
+//                saveButton.visibility = View.GONE
             } else {
                 virtualActionBar.visibility = View.VISIBLE
                 backButton.visibility = View.VISIBLE
+//                saveButton.visibility = View.VISIBLE
             }
         }
 
         val bitmaps = HomeFragment.requestGridBitmap.getBitmaps()
-        if (bitmaps.size == 1) photoView.setImageBitmap(bitmaps[0])
+        if (bitmaps.size == 1) bitmap = bitmaps[0]
         else {
-            val bitmap = Bitmap.createBitmap(bitmaps[2].width + bitmaps[0].width, bitmaps[1].height + bitmaps[0].height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            canvas.drawBitmap(bitmaps[1], bitmaps[2].width.toFloat(), 0f, null)
-            canvas.drawBitmap(bitmaps[2], 0f, bitmaps[1].height.toFloat(), null)
-            canvas.drawBitmap(bitmaps[0], bitmaps[2].width.toFloat(), bitmaps[1].height.toFloat(), null)
-            photoView.setImageBitmap(bitmap)
+            bitmap = Bitmap.createBitmap(bitmaps[2].width + bitmaps[0].width, bitmaps[1].height + bitmaps[0].height, Bitmap.Config.ARGB_8888)
+            with(Canvas(bitmap)) {
+                drawBitmap(bitmaps[1], bitmaps[2].width.toFloat(), 0f, null)
+                drawBitmap(bitmaps[2], 0f, bitmaps[1].height.toFloat(), null)
+                drawBitmap(bitmaps[0], bitmaps[2].width.toFloat(), bitmaps[1].height.toFloat(), null)
+            }
         }
+        photoView.setImageBitmap(bitmap)
+
+//        saveButton.setOnClickListener {
+//            //저장하기
+//            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+//                ActivityCompat.requestPermissions(this@FullScreenActivity, Array(1) { Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1)
+//            } else {
+//                saveBitmapToPath(bitmap, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString(), "RandomSeatArrangement.png", applicationContext)
+//            }
+//
+//            //공유하기
+//            val shareIntent: Intent = Intent().apply {
+//                action = Intent.ACTION_SEND
+//                putExtra(Intent.EXTRA_STREAM, getResizedBitmap(bitmap, 1, 1))
+//                type = "image/jpeg"
+//            }
+//            startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.share_to)))
+//        }
     }
+
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//
+//        if (grantResults[0] == 0) {
+//            //permission granted
+//            saveBitmapToPath(bitmap, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString(), "RandomSeatArrangement.png", applicationContext)
+//        } else {
+//            Toast.makeText(applicationContext, "failed to save", Toast.LENGTH_LONG).show()
+//        }
+//    }
 
     companion object {
         fun convertViewToBitmap(view: View): Bitmap {
@@ -46,5 +81,19 @@ class FullScreenActivity : AppCompatActivity() {
             view.draw(canvas)
             return returnedBitmap
         }
+
+//        fun getResizedBitmap(image: Bitmap, bitmapWidth: Int, bitmapHeight: Int): Bitmap {
+//            return Bitmap.createScaledBitmap(image, bitmapWidth, bitmapHeight, true)
+//        }
+//
+//        fun saveBitmapToPath(bitmap: Bitmap, filePath: String, fileName: String, context: Context) {
+//            val file = File(filePath)
+//            if (!file.exists()) file.mkdirs()
+//
+//            val fileCacheItem = File("$filePath/$fileName")
+//            fileCacheItem.createNewFile()
+//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, FileOutputStream(fileCacheItem))
+//            Toast.makeText(context, fileCacheItem.toString(), Toast.LENGTH_LONG).show()
+//        }
     }
 }

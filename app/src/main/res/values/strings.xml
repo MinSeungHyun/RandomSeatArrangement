@@ -12,6 +12,7 @@
     <string name="description_splash_foreground" translatable="false">splash_foreground</string>
     <string name="description_virtual_actionbar" translatable="false">virtual_actionbar</string>
     <string name="description_back_button" translatable="false">back_button</string>
+    <string name="description_save_button" translatable="false">save_button</string>
 
     <string name="row">Row :" "</string>
     <string name="column">Column :" "</string>
