@@ -74,7 +74,7 @@
     <string name="seat_text_size_key" translatable="false">seat_text_size</string>
 
     <!--AD-->
-    <string name="app_id" translatable="false">ca-app-pub-5389688178202689~7991182925</string>
-    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/7327293350</string>
-    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-5389688178202689/7135721664</string>
+    <string name="app_id" translatable="false">ca-app-pub-5515754850171812~9384149471</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5515754850171812/4570806491</string>
+    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-5515754850171812/7743764746</string>
 </resources>
