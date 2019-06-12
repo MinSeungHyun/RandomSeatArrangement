@@ -47,3 +47,8 @@ Random Seat Arrangement (랜덤 자리 배치)
 
 ## Ver 1.0 (Code 1) (최신) (앱 새로 출시)
 > 앱 출시
+
+## Ver 2.3 (Code 7)
+> 좌석 크기, 글씨 크기 설정 기능<br>
+> 전체화면 기능<br>
+> 버그 수정<br>
