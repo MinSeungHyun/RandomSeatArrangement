@@ -3,7 +3,7 @@ package com.seunghyun.randomseats.recyclerview;
 public class CardItem {
     private String titleText, descriptionText, dateText;
 
-    CardItem(String titleTV, String descriptionTV, String dateTV) {
+    public CardItem(String titleTV, String descriptionTV, String dateTV) {
         this.titleText = titleTV;
         this.descriptionText = descriptionTV;
         this.dateText = dateTV;
