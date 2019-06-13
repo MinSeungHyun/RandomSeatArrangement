@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats;
+package com.seunghyun.randomseats.utils;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -19,6 +19,7 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.RuntimeExecutionException;
 import com.google.android.play.core.tasks.Task;
+import com.seunghyun.randomseats.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

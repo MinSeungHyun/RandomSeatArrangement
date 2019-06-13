@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats
+package com.seunghyun.randomseats.utils
 
 import android.graphics.Bitmap
 

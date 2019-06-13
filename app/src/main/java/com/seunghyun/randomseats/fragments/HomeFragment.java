@@ -37,10 +37,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.seunghyun.randomseats.DataViewModel;
+import com.seunghyun.randomseats.utils.DataViewModel;
+import com.seunghyun.randomseats.utils.Database;
 import com.seunghyun.randomseats.R;
-import com.seunghyun.randomseats.RequestGridBitmap;
-import com.seunghyun.randomseats.SeatAppearanceDialog;
+import com.seunghyun.randomseats.utils.RequestGridBitmap;
+import com.seunghyun.randomseats.utils.SeatAppearanceDialog;
 import com.seunghyun.randomseats.activities.FullScreenActivity;
 import com.warkiz.widget.IndicatorSeekBar;
 import com.warkiz.widget.IndicatorStayLayout;
@@ -523,11 +524,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void reset() {
         if (interstitialAd.isLoaded()) interstitialAd.show(); //전면광고
+        //리뷰 유도창을 띄우기 위한 초기화 횟수 증가
         int resetCount = preference.getInt(getString(R.string.reset_count_key), 0);
         resetCount++;
         preferenceEditor.putInt(getString(R.string.reset_count_key), resetCount);
         preferenceEditor.apply();
 
+        Database.Companion.saveToDatabase();
+
+        //초기화 작업
         for (int i = 1; i <= row; i++) {
             for (int j = 1; j <= column; j++) {
                 TextView child = seatsGridLayout.findViewWithTag(i + ":" + j);
@@ -537,6 +542,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         model.getShownSeatsList().setValue(new ArrayList<>());
         model.getFixedSeatsMap().setValue(new HashMap<>());
     }
+
 
     private void updateState() {
         if (model.getCurrentStage().getValue() != null) {

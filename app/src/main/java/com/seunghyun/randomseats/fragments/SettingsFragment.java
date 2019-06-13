@@ -15,9 +15,9 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceManager;
 
-import com.seunghyun.randomseats.DataViewModel;
+import com.seunghyun.randomseats.utils.DataViewModel;
 import com.seunghyun.randomseats.R;
-import com.seunghyun.randomseats.SeatAppearanceDialog;
+import com.seunghyun.randomseats.utils.SeatAppearanceDialog;
 
 import java.util.Objects;
 

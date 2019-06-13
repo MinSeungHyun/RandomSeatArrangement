@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats
+package com.seunghyun.randomseats.utils
 
 import android.app.Dialog
 import android.content.Context
@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.content.res.Resources
 import android.view.Window
 import android.widget.SeekBar
+import com.seunghyun.randomseats.R
 import kotlinx.android.synthetic.main.dialog_seat_appearance.*
 
 class SeatAppearanceDialog(context: Context, sharedPreferences: SharedPreferences) : Dialog(context) {
