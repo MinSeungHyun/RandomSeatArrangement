@@ -9,6 +9,7 @@ const val DB_FILE = "history.db"
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE, null, DB_VERSION) {
     override fun onCreate(db: SQLiteDatabase?) {
+        db?.execSQL(HistoryDBContract.SQL_CREATE_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
