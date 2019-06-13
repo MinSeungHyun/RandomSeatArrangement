@@ -38,7 +38,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.seunghyun.randomseats.utils.DataViewModel;
-import com.seunghyun.randomseats.database.DBHelper;
+import com.seunghyun.randomseats.database.HistoryDBHelper;
 import com.seunghyun.randomseats.R;
 import com.seunghyun.randomseats.utils.RequestGridBitmap;
 import com.seunghyun.randomseats.utils.SeatAppearanceDialog;
@@ -530,7 +530,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         preferenceEditor.putInt(getString(R.string.reset_count_key), resetCount);
         preferenceEditor.apply();
 
-        DBHelper.Companion.saveToDatabase();
+        HistoryDBHelper.Companion.saveToDatabase();
 
         //초기화 작업
         for (int i = 1; i <= row; i++) {

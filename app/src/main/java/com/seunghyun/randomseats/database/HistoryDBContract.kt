@@ -2,6 +2,9 @@ package com.seunghyun.randomseats.database
 
 class HistoryDBContract {
     companion object {
+        const val DB_VERSION = 1
+        const val DB_FILE_NAME = "history.db"
+
         private const val TABLE_NAME = "HISTORY"
         private const val COL_ID = "ID"
         private const val COL_NAME = "NAME"

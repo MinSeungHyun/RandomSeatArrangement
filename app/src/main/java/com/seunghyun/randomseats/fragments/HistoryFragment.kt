@@ -8,14 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.seunghyun.randomseats.R
+import com.seunghyun.randomseats.database.HistoryDBHelper
 import com.seunghyun.randomseats.recyclerview.CardItem
 import com.seunghyun.randomseats.recyclerview.RecyclerAdapter
 import java.util.*
 
 class HistoryFragment : Fragment() {
+    lateinit var db: HistoryDBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initDB()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,5 +39,9 @@ class HistoryFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireActivity())
             this.adapter = adapter
         }
+    }
+
+    private fun initDB() {
+        db = HistoryDBHelper(requireContext())
     }
 }

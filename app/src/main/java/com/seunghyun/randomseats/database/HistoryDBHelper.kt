@@ -3,11 +3,10 @@ package com.seunghyun.randomseats.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.seunghyun.randomseats.database.HistoryDBContract.Companion.DB_FILE_NAME
+import com.seunghyun.randomseats.database.HistoryDBContract.Companion.DB_VERSION
 
-const val DB_VERSION = 1
-const val DB_FILE = "history.db"
-
-class DBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE, null, DB_VERSION) {
+class HistoryDBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE_NAME, null, DB_VERSION) {
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(HistoryDBContract.SQL_CREATE_TABLE)
     }
