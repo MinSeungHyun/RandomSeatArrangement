@@ -94,6 +94,40 @@
             </com.warkiz.widget.IndicatorStayLayout>
 
             <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/save_button_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/rounded_square_button_second">
+
+                <ImageView
+                    android:id="@+id/save_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="@string/description_save_button"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_baseline_save_alt_24px" />
+
+                <TextView
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@string/save"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_square_button">
@@ -105,8 +139,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="12dp"
                     android:contentDescription="@string/description_check_image"
-                    app:srcCompat="@drawable/ic_baseline_check_24px"
-                    android:tint="@android:color/white" />
+                    android:tint="@android:color/white"
+                    app:srcCompat="@drawable/ic_baseline_check_24px" />
 
                 <TextView
                     android:id="@+id/stage_button"

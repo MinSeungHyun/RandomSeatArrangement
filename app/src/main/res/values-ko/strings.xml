@@ -9,6 +9,7 @@
     <string name="next">다음</string>
     <string name="show_all">전체 보기</string>
     <string name="reset">초기화</string>
+    <string name="save">저장</string>
     <string name="number_of_seats">자리 개수 :" "</string>
     <string name="use_seat">이 자리 사용하지 않기</string>
     <string name="fix_seat">이 자리의 번호를 다음으로 고정</string>

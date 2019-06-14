@@ -13,7 +13,7 @@ class HistoryDBContract {
         private const val COL_SEAT = "SEAT"
 
         // CREATE TABLE IF NOT EXISTS
-        const val SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXIST $TABLE_NAME (" +
+        const val SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS $TABLE_NAME (" +
                 "$COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COL_NAME TEXT, " +
                 "$COL_DESCRIPTION TEXT, " +
