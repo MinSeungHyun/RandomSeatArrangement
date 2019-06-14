@@ -8,17 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.seunghyun.randomseats.R
+import com.seunghyun.randomseats.database.HistoryDBContract
 import com.seunghyun.randomseats.database.HistoryDBHelper
+import com.seunghyun.randomseats.database.HistoryItem
 import com.seunghyun.randomseats.recyclerview.CardItem
 import com.seunghyun.randomseats.recyclerview.RecyclerAdapter
 import java.util.*
 
 class HistoryFragment : Fragment() {
-    lateinit var db: HistoryDBHelper
+    private lateinit var dbHelper: HistoryDBHelper
+    private val historyItems = ArrayList<HistoryItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initDB()
+        loadAllData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,6 +46,21 @@ class HistoryFragment : Fragment() {
     }
 
     private fun initDB() {
-        db = HistoryDBHelper(requireContext())
+        dbHelper = HistoryDBHelper(requireContext())
+    }
+
+    private fun loadAllData() {
+        val cursor = dbHelper.readableDatabase.rawQuery(HistoryDBContract.SQL_SELECT, null)
+        cursor.moveToFirst()
+        while (!cursor.isAfterLast) {
+            val id = cursor.getInt(0)
+            val name = cursor.getString(1)
+            val description = cursor.getString(2)
+            val date = cursor.getString(3)
+            val seatInfo = cursor.getString(4)
+            historyItems.add(HistoryItem(id, name, description, date, seatInfo))
+            cursor.moveToNext()
+        }
+        cursor.close()
     }
 }
