@@ -43,6 +43,9 @@
     <string name="undo">Undo</string>
     <string name="ok">OK</string>
     <string name="screenshot">Screenshot</string>
+    <string name="save_to_history">Save to history</string>
+    <string name="title">Title</string>
+    <string name="description">Description(optional)</string>
 
     <!--Preference fragment-->
     <string name="use_seatNumber">Use seat number</string>

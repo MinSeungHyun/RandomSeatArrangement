@@ -33,6 +33,9 @@
     <string name="undo">되돌리기</string>
     <string name="ok">확인</string>
     <string name="screenshot">스크린샷</string>
+    <string name="save_to_history">기록에 저장하기</string>
+    <string name="title">제목</string>
+    <string name="description">설명(선택)</string>
 
     <!--Preference fragment-->
     <string name="use_seatNumber">좌석 번호 사용</string>

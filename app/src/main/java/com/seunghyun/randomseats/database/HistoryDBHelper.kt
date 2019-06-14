@@ -15,7 +15,7 @@ class HistoryDBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE_NAME
     }
 
     companion object {
-        fun saveToDatabase() {
+        fun saveToDatabase(item: HistoryItem) {
 
         }
     }

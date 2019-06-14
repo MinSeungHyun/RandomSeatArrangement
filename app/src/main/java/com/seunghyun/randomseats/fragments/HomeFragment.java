@@ -40,6 +40,8 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.seunghyun.randomseats.R;
 import com.seunghyun.randomseats.activities.FullScreenActivity;
+import com.seunghyun.randomseats.database.HistoryDBHelper;
+import com.seunghyun.randomseats.database.HistoryItem;
 import com.seunghyun.randomseats.utils.DataViewModel;
 import com.seunghyun.randomseats.utils.RequestGridBitmap;
 import com.seunghyun.randomseats.utils.SeatAppearanceDialog;
@@ -333,6 +335,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
             return bitmaps;
         };
+
+        saveButton.setOnClickListener(v -> {
+
+        });
     }
 
     @Override
@@ -534,7 +540,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         resetCount++;
         preferenceEditor.putInt(getString(R.string.reset_count_key), resetCount);
         preferenceEditor.apply();
-
 
         //초기화 작업
         for (int i = 1; i <= row; i++) {

@@ -54,11 +54,11 @@ class HistoryFragment : Fragment() {
         cursor.moveToFirst()
         while (!cursor.isAfterLast) {
             val id = cursor.getInt(0)
-            val name = cursor.getString(1)
+            val title = cursor.getString(1)
             val description = cursor.getString(2)
             val date = cursor.getString(3)
             val seatInfo = cursor.getString(4)
-            historyItems.add(HistoryItem(id, name, description, date, seatInfo))
+            historyItems.add(HistoryItem(id, title, description, date, seatInfo))
             cursor.moveToNext()
         }
         cursor.close()
