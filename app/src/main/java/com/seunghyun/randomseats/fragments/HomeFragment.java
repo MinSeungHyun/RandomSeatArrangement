@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -40,10 +41,9 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.seunghyun.randomseats.R;
 import com.seunghyun.randomseats.activities.FullScreenActivity;
-import com.seunghyun.randomseats.database.HistoryDBHelper;
-import com.seunghyun.randomseats.database.HistoryItem;
 import com.seunghyun.randomseats.utils.DataViewModel;
 import com.seunghyun.randomseats.utils.RequestGridBitmap;
+import com.seunghyun.randomseats.utils.SaveHistoryDialog;
 import com.seunghyun.randomseats.utils.SeatAppearanceDialog;
 import com.warkiz.widget.IndicatorSeekBar;
 import com.warkiz.widget.IndicatorStayLayout;
@@ -66,9 +66,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private IndicatorSeekBar rowSeekBar, columnSeekBar;
     private IndicatorStayLayout indicatorStayLayout;
     private GridLayout seatsGridLayout, verticalNumberGridLayout, horizontalNumberGridLayout;
-    private TextView stageButton, seatsNumberTV, cautionTV;
+    private TextView stageButton, seatsNumberTV, cautionTV, saveButton;
     private LinearLayout bottomSheet, homeFragmentContainer;
-    private RelativeLayout saveButton;
+    private RelativeLayout saveButtonContainer;
     private ScrollView seatsGridScrollView;
     private HorizontalScrollView seatsGridHorizontalScrollView, horizontalNumberScrollView;
     private ViewGroup parent;
@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 switch (model.getCurrentStage().getValue()) {
                     case 1:
                         //자리 설정 단계 -> 자리 확인 단계
-                        saveButton.setVisibility(View.GONE);
+                        saveButtonContainer.setVisibility(View.GONE);
                         seatsNumberTV.setVisibility(View.GONE);
                         indicatorStayLayout.setVisibility(View.GONE);
                         cautionTV.setText(R.string.show_all_helper);
@@ -135,7 +135,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     case 2:
                         //자리 확인 단계 -> 초기화 단계
                         showAll();
-                        saveButton.setVisibility(View.VISIBLE);
+                        saveButtonContainer.setVisibility(View.VISIBLE);
                         cautionTV.setVisibility(View.GONE);
                         stageButton.setText(getString(R.string.reset));
                         stageImageView.setImageDrawable(Objects.requireNonNull(getActivity()).getDrawable(R.drawable.ic_baseline_replay_24px));
@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     case 3:
                         //초기화 단계 -> 자리 설정 단계
                         reset();
-                        saveButton.setVisibility(View.GONE);
+                        saveButtonContainer.setVisibility(View.GONE);
                         seatsNumberTV.setVisibility(View.VISIBLE);
                         indicatorStayLayout.setVisibility(View.VISIBLE);
                         cautionTV.setText(R.string.caution);
@@ -264,7 +264,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         homeFragmentContainer = view.findViewById(R.id.fragment_home_container);
         homeFragmentContainer.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         cautionTV = view.findViewById(R.id.caution_text);
-        saveButton = view.findViewById(R.id.save_button_container);
+        saveButtonContainer = view.findViewById(R.id.save_button_container);
+        saveButton = view.findViewById(R.id.save_button);
 
         seekChangeListener = new OnSeekChangeListener() {
             @Override
@@ -336,9 +337,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             return bitmaps;
         };
 
-        saveButton.setOnClickListener(v -> {
-
-        });
+        saveButton.setOnClickListener(this);
     }
 
     @Override
@@ -404,6 +403,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             break;
                     }
                 }
+                break;
+            case R.id.save_button:
+                String seatInfo;
+                if (model.getRandomNumbers().getValue() != null)
+                    seatInfo = model.getRandomNumbers().getValue().toString();
+                else seatInfo = "";
+
+                int width = getResources().getDisplayMetrics().widthPixels;
+                SaveHistoryDialog dialog = new SaveHistoryDialog(requireContext(), seatInfo);
+                WindowManager.LayoutParams windowManager = Objects.requireNonNull(dialog.getWindow()).getAttributes();
+                windowManager.copyFrom(dialog.getWindow().getAttributes());
+                windowManager.width = (int) (width / 1.2);
+                dialog.show();
         }
     }
 
@@ -560,7 +572,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 case 1:
                     //자리 설정 단계
                     updateNotUseSeat();
-                    saveButton.setVisibility(View.GONE);
+                    saveButtonContainer.setVisibility(View.GONE);
                     seatsNumberTV.setVisibility(View.VISIBLE);
                     indicatorStayLayout.setVisibility(View.VISIBLE);
                     cautionTV.setText(R.string.caution);
@@ -574,7 +586,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     //자리 확인 단계
                     ArrayList<String> shownSeatsList = model.getShownSeatsList().getValue() == null ? new ArrayList<>() : model.getShownSeatsList().getValue();
                     for (String tag : shownSeatsList) showSeat(tag);
-                    saveButton.setVisibility(View.GONE);
+                    saveButtonContainer.setVisibility(View.GONE);
                     seatsNumberTV.setVisibility(View.GONE);
                     indicatorStayLayout.setVisibility(View.GONE);
                     cautionTV.setText(R.string.show_all_helper);
@@ -586,7 +598,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 case 3:
                     //초기화 단계
                     showAll();
-                    saveButton.setVisibility(View.VISIBLE);
+                    saveButtonContainer.setVisibility(View.VISIBLE);
                     seatsNumberTV.setVisibility(View.GONE);
                     indicatorStayLayout.setVisibility(View.GONE);
                     cautionTV.setVisibility(View.GONE);

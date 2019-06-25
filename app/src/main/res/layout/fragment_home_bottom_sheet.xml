@@ -102,7 +102,6 @@
                 android:background="@drawable/rounded_square_button_second">
 
                 <ImageView
-                    android:id="@+id/save_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

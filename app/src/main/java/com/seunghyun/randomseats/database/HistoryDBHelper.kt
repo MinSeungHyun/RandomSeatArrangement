@@ -3,6 +3,7 @@ package com.seunghyun.randomseats.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.seunghyun.randomseats.database.HistoryDBContract.Companion.DB_FILE_NAME
 import com.seunghyun.randomseats.database.HistoryDBContract.Companion.DB_VERSION
 
@@ -16,7 +17,7 @@ class HistoryDBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE_NAME
 
     companion object {
         fun saveToDatabase(item: HistoryItem) {
-
+            Log.d("testing", "title: ${item.title}, description: ${item.description}, date: ${item.date}, seatInfo: ${item.seatInfo}")
         }
     }
 }
