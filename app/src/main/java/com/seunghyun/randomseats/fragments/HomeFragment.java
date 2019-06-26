@@ -407,7 +407,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.save_button:
                 String seatInfo;
                 if (model.getRandomNumbers().getValue() != null)
-                    seatInfo = model.getRandomNumbers().getValue().toString();
+                    seatInfo = row + ":" + column + model.getRandomNumbers().getValue().toString();
                 else seatInfo = "";
 
                 int width = getResources().getDisplayMetrics().widthPixels;
