@@ -66,7 +66,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private IndicatorSeekBar rowSeekBar, columnSeekBar;
     private IndicatorStayLayout indicatorStayLayout;
     private GridLayout seatsGridLayout, verticalNumberGridLayout, horizontalNumberGridLayout;
-    private TextView stageButton, seatsNumberTV, cautionTV, saveButton;
+    private TextView stageButton;
+    private TextView seatsNumberTV;
+    private TextView cautionTV;
     private LinearLayout bottomSheet, homeFragmentContainer;
     private RelativeLayout saveButtonContainer;
     private ScrollView seatsGridScrollView;
@@ -265,7 +267,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         homeFragmentContainer.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         cautionTV = view.findViewById(R.id.caution_text);
         saveButtonContainer = view.findViewById(R.id.save_button_container);
-        saveButton = view.findViewById(R.id.save_button);
+        TextView saveButton = view.findViewById(R.id.save_button);
 
         seekChangeListener = new OnSeekChangeListener() {
             @Override
