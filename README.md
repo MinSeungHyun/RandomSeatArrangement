@@ -1,7 +1,7 @@
 # Random Seat Arrangement (랜덤 자리 배치)
 #### https://play.google.com/store/apps/details?id=com.seunghyun.randomseats
 ===========
-업데이트 예정
+## 업데이트 예정
 1. 공유기능
 2. 기록 저장기능 (색깔 선택 가능)
 3. 번호 보일 떄 애니메이션 기능, 효과음
