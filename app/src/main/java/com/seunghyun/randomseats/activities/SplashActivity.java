@@ -3,8 +3,9 @@ package com.seunghyun.randomseats.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.seunghyun.randomseats.R;
 
@@ -36,7 +37,9 @@ public class SplashActivity extends AppCompatActivity {
     private class splashHandler implements Runnable {
         public void run() {
             if (isRunning) {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
                 SplashActivity.this.finish();
             }
         }
