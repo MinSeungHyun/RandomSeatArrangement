@@ -407,13 +407,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.save_button:
-                String seatInfo;
-                if (model.getRandomNumbers().getValue() != null)
-                    seatInfo = row + ":" + column + model.getRandomNumbers().getValue().toString();
-                else seatInfo = "";
+                StringBuilder seatInfo = new StringBuilder();
+                if (model.getRandomNumbers().getValue() != null) {
+                    seatInfo.append(row).append(":").append(column).append("/");
+                    ArrayList<Integer> randomNumbers = model.getRandomNumbers().getValue();
+                    for (int n : randomNumbers) seatInfo.append(n).append(":");
+                } else seatInfo.append("");
 
                 int width = getResources().getDisplayMetrics().widthPixels;
-                SaveHistoryDialog dialog = new SaveHistoryDialog(requireContext(), seatInfo);
+                SaveHistoryDialog dialog = new SaveHistoryDialog(requireContext(), seatInfo.toString());
                 WindowManager.LayoutParams windowManager = Objects.requireNonNull(dialog.getWindow()).getAttributes();
                 windowManager.copyFrom(dialog.getWindow().getAttributes());
                 windowManager.width = (int) (width / 1.2);

@@ -29,7 +29,7 @@ class SaveHistoryDialog(context: Context, seatInfo: String) : Dialog(context) {
                 Toast.makeText(context, context.getString(R.string.text_over_error), Toast.LENGTH_LONG).show()
             } else {
                 val item = HistoryItem(null, titleET.text.toString(), descriptionET.text.toString(), getCurrentTime(), seatInfo)
-                HistoryDBHelper.saveToDatabase(item)
+                HistoryDBHelper.saveValues(context, item)
                 dismiss()
             }
         }
