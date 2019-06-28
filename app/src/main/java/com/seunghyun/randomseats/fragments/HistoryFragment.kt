@@ -28,8 +28,9 @@ class HistoryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
         val items = ArrayList<CardItem>().apply {
-            add(CardItem("Title1", "Description1", "2019.05.16"))
-            add(CardItem("Title2", "Description2", "2019.05.17"))
+            historyItems.forEach {
+                add(CardItem(it.title, it.description, it.date))
+            }
         }
 
         setUpRecyclerView(view, items)
