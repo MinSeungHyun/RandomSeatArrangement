@@ -1,5 +1,5 @@
-Random Seat Arrangement (랜덤 자리 배치)
-##https://play.google.com/store/apps/details?id=com.seunghyun.randomseats
+# Random Seat Arrangement (랜덤 자리 배치)
+#### https://play.google.com/store/apps/details?id=com.seunghyun.randomseats
 ===========
 업데이트 예정
 1. 공유기능
