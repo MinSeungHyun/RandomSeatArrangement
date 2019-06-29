@@ -1,9 +1,8 @@
-# Random Seat Arrangement (랜덤 자리 배치)
+# Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com/store/apps/details?id=com.seunghyun.randomseats"><img src="/images/download_in_store.svg" width="120"></a>
 ![GitHub last commit](https://img.shields.io/github/last-commit/MinSeungHyun/RandomSeatArrangement.svg?color=blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MinSeungHyun/RandomSeatArrangement.svg?label=commit)
 ![GitHub top language](https://img.shields.io/github/languages/top/MinSeungHyun/RandomSeatArrangement.svg?color=orange)
 ![GitHub repo size](https://img.shields.io/github/repo-size/MinSeungHyun/RandomSeatArrangement.svg?color=brightgreen)
-#### https://play.google.com/store/apps/details?id=com.seunghyun.randomseats
 ## 업데이트 예정
 1. 공유기능
 2. 기록 저장기능 (색깔 선택 가능)
@@ -44,7 +43,7 @@
 > 앱 업데이트가 있을시 자동으로 알리기<br>
 > 안드로이드 6.0미만 지원 
 
-## Ver 2.1 (Code 5)
+## Ver 2.1 (Code 5) 
 > 대각선 스크롤 추가<br>
 > Splash screen 추가
 
