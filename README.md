@@ -1,4 +1,8 @@
 # Random Seat Arrangement (랜덤 자리 배치)
+![GitHub last commit](https://img.shields.io/github/last-commit/MinSeungHyun/RandomSeatArrangement.svg?color=blue)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MinSeungHyun/RandomSeatArrangement.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/MinSeungHyun/RandomSeatArrangement.svg?color=orange)
+![GitHub repo size](https://img.shields.io/github/repo-size/MinSeungHyun/RandomSeatArrangement.svg?color=brightgreen)
 #### https://play.google.com/store/apps/details?id=com.seunghyun.randomseats
 ## 업데이트 예정
 1. 공유기능
