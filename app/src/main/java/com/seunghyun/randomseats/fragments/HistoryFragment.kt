@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,12 +23,12 @@ import java.util.*
 class HistoryFragment : Fragment() {
     private lateinit var dbHelper: HistoryDBHelper
     private val historyItems = ArrayList<HistoryItem>()
-    private lateinit var adapter: RecyclerAdapter
+    private lateinit var mAdapter: RecyclerAdapter
 
     private val historyAddedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) { //From HistoryDBHelper.kt
             val historyItem = loadLastData()
-            adapter.addItem(CardItem(historyItem.title, historyItem.description, historyItem.date))
+            mAdapter.addItem(CardItem(historyItem.title, historyItem.description, historyItem.date))
         }
     }
 
@@ -58,11 +57,11 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setUpRecyclerView(view: View, items: ArrayList<CardItem>) {
-        adapter = RecyclerAdapter(requireActivity(), items)
+        mAdapter = RecyclerAdapter(requireActivity(), items)
         with(view.findViewById<RecyclerView>(R.id.recycler_view)) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireActivity())
-            this.adapter = adapter
+            adapter = mAdapter
         }
     }
 
