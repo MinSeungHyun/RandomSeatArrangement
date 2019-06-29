@@ -1,9 +1,11 @@
 package com.seunghyun.randomseats.recyclerview;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -44,6 +46,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void addItem(CardItem item) {
+        items.add(item);
+        notifyDataSetChanged();
+        Toast.makeText(context, R.string.item_added, Toast.LENGTH_LONG).show();
     }
 
     void deleteItem(int position) {

@@ -39,7 +39,8 @@
     <string name="show">SHOW</string>
     <string name="caution">Caution! If you change row or column below, the setting of each seat will be deleted.</string>
     <string name="show_all_helper">Click each seat to see a single number, or click the button below to view all of them.</string>
-    <string name="item_deleted">An item deleted.</string>
+    <string name="item_added">A history was added.</string>
+    <string name="item_deleted">A history was deleted.</string>
     <string name="undo">Undo</string>
     <string name="ok">OK</string>
     <string name="screenshot">Screenshot</string>

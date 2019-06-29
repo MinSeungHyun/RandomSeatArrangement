@@ -1,8 +1,10 @@
 package com.seunghyun.randomseats.database
 
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.seunghyun.randomseats.database.HistoryDBContract.Companion.DB_FILE_NAME
 import com.seunghyun.randomseats.database.HistoryDBContract.Companion.DB_VERSION
 
@@ -20,6 +22,7 @@ class HistoryDBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE_NAME
                     HistoryDBContract.SQL_INSERT +
                             "(\"${item.title}\", \"${item.description}\", \"${item.date}\", \"${item.seatInfo}\")"
             )
+            LocalBroadcastManager.getInstance(context).sendBroadcast(Intent("History added")) //To HistoryFragment.kt
         }
     }
 }
