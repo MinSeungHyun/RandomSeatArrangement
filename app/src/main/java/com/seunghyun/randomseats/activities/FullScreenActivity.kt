@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.activity_full_screen.*
 
 
 class FullScreenActivity : AppCompatActivity() {
-    private lateinit var bitmap: Bitmap
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -34,16 +32,7 @@ class FullScreenActivity : AppCompatActivity() {
         }
 
         val bitmaps = HomeFragment.requestGridBitmap.getBitmaps()
-        if (bitmaps.size == 1) bitmap = bitmaps[0]
-        else {
-            bitmap = Bitmap.createBitmap(bitmaps[2].width + bitmaps[0].width, bitmaps[1].height + bitmaps[0].height, Bitmap.Config.ARGB_8888)
-            with(Canvas(bitmap)) {
-                drawBitmap(bitmaps[1], bitmaps[2].width.toFloat(), 0f, null)
-                drawBitmap(bitmaps[2], 0f, bitmaps[1].height.toFloat(), null)
-                drawBitmap(bitmaps[0], bitmaps[2].width.toFloat(), bitmaps[1].height.toFloat(), null)
-            }
-        }
-        photoView.setImageBitmap(bitmap)
+        photoView.setImageBitmap(mergeBitmaps(bitmaps))
 
 //        saveButton.setOnClickListener {
 //            //저장하기
@@ -80,6 +69,20 @@ class FullScreenActivity : AppCompatActivity() {
             val canvas = Canvas(returnedBitmap)
             view.draw(canvas)
             return returnedBitmap
+        }
+
+        fun mergeBitmaps(bitmaps: ArrayList<Bitmap>): Bitmap {
+            val bitmap: Bitmap
+            if (bitmaps.size == 1) bitmap = bitmaps[0]
+            else {
+                bitmap = Bitmap.createBitmap(bitmaps[2].width + bitmaps[0].width, bitmaps[1].height + bitmaps[0].height, Bitmap.Config.ARGB_8888)
+                with(Canvas(bitmap)) {
+                    drawBitmap(bitmaps[1], bitmaps[2].width.toFloat(), 0f, null)
+                    drawBitmap(bitmaps[2], 0f, bitmaps[1].height.toFloat(), null)
+                    drawBitmap(bitmaps[0], bitmaps[2].width.toFloat(), bitmaps[1].height.toFloat(), null)
+                }
+            }
+            return bitmap
         }
 
 //        fun getResizedBitmap(image: Bitmap, bitmapWidth: Int, bitmapHeight: Int): Bitmap {
