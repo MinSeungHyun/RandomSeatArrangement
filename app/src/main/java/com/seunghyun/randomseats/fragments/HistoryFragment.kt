@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.database.Cursor
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +20,6 @@ import com.seunghyun.randomseats.database.HistoryDBHelper
 import com.seunghyun.randomseats.database.HistoryItem
 import com.seunghyun.randomseats.recyclerview.CardItem
 import com.seunghyun.randomseats.recyclerview.RecyclerAdapter
-import java.util.*
 
 class HistoryFragment : Fragment() {
     private lateinit var dbHelper: HistoryDBHelper
@@ -28,7 +29,7 @@ class HistoryFragment : Fragment() {
     private val historyAddedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) { //From HistoryDBHelper.kt
             val historyItem = loadLastData()
-            mAdapter.addItem(CardItem(historyItem.title, historyItem.description, historyItem.date))
+            mAdapter.addItem(CardItem(historyItem.title, historyItem.description, historyItem.date, historyItem.seatImage))
         }
     }
 
@@ -48,7 +49,7 @@ class HistoryFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
         val items = ArrayList<CardItem>().apply {
             historyItems.forEach {
-                add(CardItem(it.title, it.description, it.date))
+                add(CardItem(it.title, it.description, it.date, it.seatImage))
             }
         }
 
@@ -72,13 +73,9 @@ class HistoryFragment : Fragment() {
     private fun loadAllData() {
         val cursor = dbHelper.readableDatabase.rawQuery(HistoryDBContract.SQL_SELECT, null)
         cursor.moveToFirst()
+        val dbItem = DBItem(cursor)
         while (!cursor.isAfterLast) {
-            val id = cursor.getInt(0)
-            val title = cursor.getString(1)
-            val description = cursor.getString(2)
-            val date = cursor.getString(3)
-            val seatInfo = cursor.getString(4)
-            historyItems.add(HistoryItem(id, title, description, date, seatInfo))
+            historyItems.add(HistoryItem(dbItem.getId(), dbItem.getTitle(), dbItem.getDescription(), dbItem.getDate(), dbItem.getSeatInfo(), dbItem.getSeatImage()))
             cursor.moveToNext()
         }
         cursor.close()
@@ -87,15 +84,21 @@ class HistoryFragment : Fragment() {
     private fun loadLastData(): HistoryItem {
         val cursor = dbHelper.readableDatabase.rawQuery(HistoryDBContract.SQL_SELECT, null)
         cursor.moveToLast()
-        val id = cursor.getInt(0)
-        val title = cursor.getString(1)
-        val description = cursor.getString(2)
-        val date = cursor.getString(3)
-        val seatInfo = cursor.getString(4)
-
-        val item = HistoryItem(id, title, description, date, seatInfo)
+        val dbItem = DBItem(cursor)
+        val item = HistoryItem(dbItem.getId(), dbItem.getTitle(), dbItem.getDescription(), dbItem.getDate(), dbItem.getSeatInfo(), dbItem.getSeatImage())
         historyItems.add(item)
         cursor.close()
         return item
+    }
+
+    private class DBItem(val cursor: Cursor) {
+        fun getId() = cursor.getInt(0)
+        fun getTitle() = cursor.getString(1)!!
+        fun getDescription() = cursor.getString(2)!!
+        fun getDate() = cursor.getString(3)!!
+        fun getSeatInfo() = cursor.getString(4)!!
+        fun getSeatImage() = cursor.getBlob(5).let {
+            BitmapFactory.decodeByteArray(it, 0, it.size)!!
+        }
     }
 }

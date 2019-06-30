@@ -3,6 +3,7 @@ package com.seunghyun.randomseats.recyclerview;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.titleTV.setText(item.getTitleText());
         viewHolder.descriptionTV.setText(item.getDescriptionText());
         viewHolder.dateTV.setText(item.getDateText());
+        viewHolder.seatImage.setImageBitmap(item.getSeatImage());
     }
 
     @Override
@@ -76,6 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView titleTV, descriptionTV, dateTV;
+        ImageView seatImage;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -83,6 +86,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             titleTV = itemView.findViewById(R.id.title_tv);
             descriptionTV = itemView.findViewById(R.id.description_tv);
             dateTV = itemView.findViewById(R.id.date_tv);
+            seatImage = itemView.findViewById(R.id.seat_image);
         }
     }
 }
