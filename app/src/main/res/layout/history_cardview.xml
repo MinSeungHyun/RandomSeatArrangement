@@ -21,8 +21,9 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@string/description_seat_image"
+            android:background="@drawable/gradient_background"
             android:maxHeight="300dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
