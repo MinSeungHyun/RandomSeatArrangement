@@ -20,7 +20,7 @@ class HistoryDBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE_NAME
         fun saveValues(context: Context, item: HistoryItem) {
             HistoryDBHelper(context).writableDatabase.execSQL(
                     HistoryDBContract.SQL_INSERT +
-                            "(\"${item.title}\", \"${item.description}\", \"${item.date}\", \"${item.seatInfo}\")"
+                            "(\"${item.title}\", \"${item.description}\", \"${item.date}\", \"${item.seatInfo}\", \"${item.seatImage}\")"
             )
             LocalBroadcastManager.getInstance(context).sendBroadcast(Intent("History added")) //To HistoryFragment.kt
         }
