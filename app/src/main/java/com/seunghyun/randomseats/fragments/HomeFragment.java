@@ -413,9 +413,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     ArrayList<Integer> randomNumbers = model.getRandomNumbers().getValue();
                     for (int n : randomNumbers) seatInfo.append(n).append(":");
                 } else seatInfo.append("");
+                Bitmap seatBitmap = FullScreenActivity.Companion.mergeBitmaps(HomeFragment.requestGridBitmap.getBitmaps());
 
                 int width = getResources().getDisplayMetrics().widthPixels;
-                SaveHistoryDialog dialog = new SaveHistoryDialog(requireContext(), seatInfo.toString());
+                SaveHistoryDialog dialog = new SaveHistoryDialog(requireContext(), seatInfo.toString(), seatBitmap);
                 WindowManager.LayoutParams windowManager = Objects.requireNonNull(dialog.getWindow()).getAttributes();
                 windowManager.copyFrom(dialog.getWindow().getAttributes());
                 windowManager.width = (int) (width / 1.2);

@@ -19,7 +19,7 @@ class HistoryDBContract {
                 "$COL_TITLE TEXT, " +
                 "$COL_DESCRIPTION TEXT, " +
                 "$COL_DATE TEXT, " +
-                "$COL_SEAT_INFO TEXT" +
+                "$COL_SEAT_INFO TEXT, " +
                 "$COL_SEAT_BITMAP BLOB" +
                 ")"
 

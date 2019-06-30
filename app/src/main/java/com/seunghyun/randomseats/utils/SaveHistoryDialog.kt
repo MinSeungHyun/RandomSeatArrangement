@@ -3,6 +3,7 @@ package com.seunghyun.randomseats.utils
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Bitmap
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Window
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.dialog_save_history.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SaveHistoryDialog(context: Context, seatInfo: String) : Dialog(context) {
+class SaveHistoryDialog(context: Context, seatInfo: String, seatBitmap: Bitmap) : Dialog(context) {
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_save_history)
@@ -28,7 +29,7 @@ class SaveHistoryDialog(context: Context, seatInfo: String) : Dialog(context) {
             } else if (titleET.text!!.length > 20 || descriptionET.text!!.length > 100) {
                 Toast.makeText(context, context.getString(R.string.text_over_error), Toast.LENGTH_LONG).show()
             } else {
-                val item = HistoryItem(null, titleET.text.toString(), descriptionET.text.toString(), getCurrentTime(), seatInfo)
+                val item = HistoryItem(null, titleET.text.toString(), descriptionET.text.toString(), getCurrentTime(), seatInfo, seatBitmap)
                 HistoryDBHelper.saveValues(context, item)
                 dismiss()
             }
