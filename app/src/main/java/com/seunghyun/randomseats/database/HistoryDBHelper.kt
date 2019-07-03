@@ -29,7 +29,7 @@ class HistoryDBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE_NAME
             LocalBroadcastManager.getInstance(context).sendBroadcast(Intent("History added")) //To HistoryFragment.kt
         }
 
-        private fun getByteArrayFromBitmap(bitmap: Bitmap): ByteArray {
+        fun getByteArrayFromBitmap(bitmap: Bitmap): ByteArray {
             val stream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
             return stream.toByteArray()

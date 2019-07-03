@@ -1,5 +1,7 @@
 package com.seunghyun.randomseats.recyclerview;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.seunghyun.randomseats.R;
+import com.seunghyun.randomseats.activities.HistoryDetailActivity;
+import com.seunghyun.randomseats.database.HistoryDBHelper;
 
 import java.util.List;
 
@@ -42,6 +46,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.descriptionTV.setText(item.getDescriptionText());
         viewHolder.dateTV.setText(item.getDateText());
         viewHolder.seatImage.setImageBitmap(item.getSeatImage());
+
+        viewHolder.clickableView.setOnClickListener(v -> {
+            Context context = v.getContext();
+            CardItem clickedItem = items.get(position);
+            Intent intent = new Intent(context, HistoryDetailActivity.class);
+            intent.putExtra("title", clickedItem.getTitleText());
+            intent.putExtra("description", clickedItem.getDescriptionText());
+            intent.putExtra("date", clickedItem.getDateText());
+            intent.putExtra("image", HistoryDBHelper.Companion.getByteArrayFromBitmap(clickedItem.getSeatImage()));
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -79,6 +94,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         CardView cardView;
         TextView titleTV, descriptionTV, dateTV;
         ImageView seatImage;
+        View clickableView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -87,6 +103,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             descriptionTV = itemView.findViewById(R.id.description_tv);
             dateTV = itemView.findViewById(R.id.date_tv);
             seatImage = itemView.findViewById(R.id.seat_image);
+            clickableView = itemView.findViewById(R.id.clickable_view);
         }
     }
 }
