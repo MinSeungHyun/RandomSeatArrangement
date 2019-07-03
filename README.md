@@ -1,4 +1,5 @@
-# Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com/store/apps/details?id=com.seunghyun.randomseats"><img src="/images/download_in_store.svg" width="120"></a>
+Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com/store/apps/details?id=com.seunghyun.randomseats"><img src="/images/download_in_store.svg" width="120"></a>
+===================================
 ![GitHub last commit](https://img.shields.io/github/last-commit/MinSeungHyun/RandomSeatArrangement.svg?color=blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MinSeungHyun/RandomSeatArrangement.svg?label=commit)
 ![GitHub top language](https://img.shields.io/github/languages/top/MinSeungHyun/RandomSeatArrangement.svg?color=orange)
