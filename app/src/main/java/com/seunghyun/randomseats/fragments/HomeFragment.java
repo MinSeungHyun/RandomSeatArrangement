@@ -41,6 +41,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.seunghyun.randomseats.R;
 import com.seunghyun.randomseats.activities.FullScreenActivity;
+import com.seunghyun.randomseats.database.HistoryDBHelper;
 import com.seunghyun.randomseats.utils.DataViewModel;
 import com.seunghyun.randomseats.utils.RequestGridBitmap;
 import com.seunghyun.randomseats.utils.SaveHistoryDialog;
@@ -414,6 +415,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     for (int n : randomNumbers) seatInfo.append(n).append(":");
                 } else seatInfo.append("");
                 Bitmap seatBitmap = FullScreenActivity.Companion.mergeBitmaps(HomeFragment.requestGridBitmap.getBitmaps());
+                seatBitmap = HistoryDBHelper.Companion.getResizedBitmap(seatBitmap, 500);
 
                 int width = getResources().getDisplayMetrics().widthPixels;
                 SaveHistoryDialog dialog = new SaveHistoryDialog(requireContext(), seatInfo.toString(), seatBitmap);
