@@ -19,6 +19,7 @@
 15. (FullScreenActivity.kt:36) NullPointerException : FullScreenActivity에서 화면 전환할 때 MainActivity가 종료된 상태면 발생
 16. tgkill 
 17. APK 암호화
+18. 기록 불러올 때 나눠서 
 
 ## Ver 1.0 (Code 1)
 > 앱 출시
