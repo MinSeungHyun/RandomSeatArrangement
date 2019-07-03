@@ -13,23 +13,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.seunghyun.randomseats.R
 import com.seunghyun.randomseats.database.HistoryDBContract
 import com.seunghyun.randomseats.database.HistoryDBHelper
 import com.seunghyun.randomseats.database.HistoryItem
 import com.seunghyun.randomseats.recyclerview.CardItem
 import com.seunghyun.randomseats.recyclerview.RecyclerAdapter
+import kotlinx.android.synthetic.main.fragment_history.view.*
 
 class HistoryFragment : Fragment() {
     private lateinit var dbHelper: HistoryDBHelper
     private val historyItems = ArrayList<HistoryItem>()
     private lateinit var mAdapter: RecyclerAdapter
+    private lateinit var parent: View
 
     private val historyAddedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) { //From HistoryDBHelper.kt
             val historyItem = loadLastData()
             mAdapter.addItem(CardItem(historyItem.title, historyItem.description, historyItem.date, historyItem.seatImage))
+            parent.emptyHistoryTV.visibility = View.GONE
         }
     }
 
@@ -46,20 +48,22 @@ class HistoryFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_history, container, false)
+        parent = inflater.inflate(R.layout.fragment_history, container, false)
         val items = ArrayList<CardItem>().apply {
             historyItems.forEach {
                 add(CardItem(it.title, it.description, it.date, it.seatImage))
             }
         }
 
-        setUpRecyclerView(view, items)
-        return view
+        setUpRecyclerView(items)
+        if (items.size == 0)
+            parent.emptyHistoryTV.visibility = View.VISIBLE
+        return parent
     }
 
-    private fun setUpRecyclerView(view: View, items: ArrayList<CardItem>) {
+    private fun setUpRecyclerView(items: ArrayList<CardItem>) {
         mAdapter = RecyclerAdapter(requireActivity(), items)
-        with(view.findViewById<RecyclerView>(R.id.recycler_view)) {
+        with(parent.recycler_view) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireActivity())
             adapter = mAdapter
