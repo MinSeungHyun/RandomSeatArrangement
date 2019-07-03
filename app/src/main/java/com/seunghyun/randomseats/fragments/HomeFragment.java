@@ -359,7 +359,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                     .anchorView(parent.findViewWithTag(tag))
                                     .text("test")
                                     .gravity(Gravity.TOP)
-                                    .contentView(R.layout.seat_detail_setting_layout)
+                                    .contentView(R.layout.dialog_seat_detail_setting)
                                     .showArrow(true)
                                     .arrowColor(Objects.requireNonNull(getActivity()).getColor(R.color.transparentWhite))
                                     .arrowHeight(50)
@@ -444,7 +444,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         for (int i = 1; i <= row; i++) {
             for (int j = 1; j <= column; j++) {
-                TextView textView = (TextView) inflater.inflate(R.layout.grid_item, seatsGridLayout, false);
+                TextView textView = (TextView) inflater.inflate(R.layout.item_grid, seatsGridLayout, false);
                 textView.setTag(i + ":" + j);
                 textView.setOnClickListener(this);
                 textView.setBackgroundResource(R.drawable.rounded_square);
@@ -460,7 +460,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
             if (isSeatNumberShow) {
                 //행 번호
-                TextView textView = (TextView) inflater.inflate(R.layout.vertical_seat_number_item, seatsGridLayout, false);
+                TextView textView = (TextView) inflater.inflate(R.layout.item_vertical_seat_number, seatsGridLayout, false);
                 if (rowSeatNumberType.equals(getString(R.string.alphabet)))
                     textView.setText(String.valueOf(Character.toChars('A' + i - 1)));
                 else textView.setText(String.valueOf(i));
@@ -473,7 +473,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (isSeatNumberShow) {
             //열 번호
             for (int i = 1; i <= column; i++) {
-                TextView textView = (TextView) inflater.inflate(R.layout.horizontal_seat_number_item, seatsGridLayout, false);
+                TextView textView = (TextView) inflater.inflate(R.layout.item_horizontal_seat_number, seatsGridLayout, false);
                 if (columnSeatNumberType.equals(getString(R.string.alphabet)))
                     textView.setText(String.valueOf(Character.toChars('A' + i - 1)));
                 else textView.setText(String.valueOf(i));
