@@ -3,6 +3,7 @@ package com.seunghyun.randomseats.activities
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -25,5 +26,15 @@ class HistoryDetailActivity : AppCompatActivity() {
 
         (collapsing_toolbar as CollapsingToolbarLayout).title = title
         seatImageView.setImageBitmap(image)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return false
     }
 }
