@@ -15,7 +15,11 @@ import kotlinx.android.synthetic.main.dialog_save_history.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+private const val TITLE_MAX_LENGTH = 50
+private const val DESCRIPTION_MAX_LENGTH = 100
+
 class SaveHistoryDialog(context: Context, seatInfo: String, seatBitmap: Bitmap) : Dialog(context) {
+
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_save_history)
@@ -26,7 +30,7 @@ class SaveHistoryDialog(context: Context, seatInfo: String, seatBitmap: Bitmap) 
         okButton.setOnClickListener {
             if (titleET.text!!.length < 2) {
                 Toast.makeText(context, context.getString(R.string.text_short_error), Toast.LENGTH_LONG).show()
-            } else if (titleET.text!!.length > 20 || descriptionET.text!!.length > 100) {
+            } else if (titleET.text!!.length > TITLE_MAX_LENGTH || descriptionET.text!!.length > DESCRIPTION_MAX_LENGTH) {
                 Toast.makeText(context, context.getString(R.string.text_over_error), Toast.LENGTH_LONG).show()
             } else {
                 val item = HistoryItem(null, titleET.text.toString(), descriptionET.text.toString(), getCurrentTime(), seatInfo, seatBitmap)
@@ -34,6 +38,9 @@ class SaveHistoryDialog(context: Context, seatInfo: String, seatBitmap: Bitmap) 
                 dismiss()
             }
         }
+
+        titleETLayout.counterMaxLength = TITLE_MAX_LENGTH
+        descriptionETLayout.counterMaxLength = DESCRIPTION_MAX_LENGTH
 
         titleET.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -43,7 +50,7 @@ class SaveHistoryDialog(context: Context, seatInfo: String, seatBitmap: Bitmap) 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (count > 20) titleETLayout.error = context.getString(R.string.text_over_error)
+                if (count > TITLE_MAX_LENGTH) titleETLayout.error = context.getString(R.string.text_over_error)
                 else titleETLayout.error = ""
             }
         })
@@ -55,7 +62,7 @@ class SaveHistoryDialog(context: Context, seatInfo: String, seatBitmap: Bitmap) 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (count > 100) descriptionETLayout.error = context.getString(R.string.text_over_error)
+                if (count > DESCRIPTION_MAX_LENGTH) descriptionETLayout.error = context.getString(R.string.text_over_error)
                 else descriptionETLayout.error = ""
             }
         })

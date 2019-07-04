@@ -26,7 +26,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:counterEnabled="true"
-        app:counterMaxLength="20"
         app:layout_constraintTop_toBottomOf="@id/dialogTitleTV">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -44,7 +43,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:counterEnabled="true"
-        app:counterMaxLength="100"
         app:layout_constraintTop_toBottomOf="@id/titleETLayout">
 
         <com.google.android.material.textfield.TextInputEditText
