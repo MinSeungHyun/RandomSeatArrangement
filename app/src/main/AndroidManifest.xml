@@ -21,7 +21,9 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_id" />
 
-        <activity android:name=".activities.HistoryDetailActivity" />
+        <activity
+            android:name=".activities.HistoryDetailActivity"
+            android:theme="@style/HistoryTheme" />
 
         <activity
             android:name="com.seunghyun.randomseats.activities.FullScreenActivity"
