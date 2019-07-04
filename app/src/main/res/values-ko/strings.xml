@@ -38,6 +38,7 @@
     <string name="save_to_history">기록에 저장하기</string>
     <string name="title">제목</string>
     <string name="description_optional">설명(선택)</string>
+    <string name="description">설명</string>
     <string name="text_over_error">문자가 너무 깁니다.</string>
     <string name="text_short_error">문자가 너무 짧습니다.</string>
 

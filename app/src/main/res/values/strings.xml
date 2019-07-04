@@ -49,6 +49,7 @@
     <string name="save_to_history">Save to record</string>
     <string name="title">Title</string>
     <string name="description_optional">Description(optional)</string>
+    <string name="description">Description</string>
     <string name="text_over_error">Characters are too long.</string>
     <string name="text_short_error">Characters are too short.</string>
 

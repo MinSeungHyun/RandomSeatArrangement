@@ -1,9 +1,11 @@
 package com.seunghyun.randomseats.activities
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -24,7 +26,20 @@ class HistoryDetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar as Toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        assignValues(title, description, date, image)
+    }
+
+    private fun assignValues(title: String, description: String, date: String, image: Bitmap) {
         (collapsing_toolbar as CollapsingToolbarLayout).title = title
+        if (description.isNotEmpty()) {
+            descriptionTitleTV.visibility = View.VISIBLE
+            descriptionContentTV.visibility = View.VISIBLE
+            descriptionContentTV.text = description
+        } else {
+            descriptionTitleTV.visibility = View.GONE
+            descriptionContentTV.visibility = View.GONE
+        }
+        dateTV.text = date
         seatImageView.setImageBitmap(image)
     }
 

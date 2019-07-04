@@ -12,4 +12,6 @@
 
     <color name="splashStartColor">#D261F7</color>
     <color name="splashEndColor">#9230AC</color>
+
+    <color name="contentTextColor">#B2000000</color>
 </resources>
