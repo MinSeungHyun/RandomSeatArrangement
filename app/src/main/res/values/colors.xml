@@ -9,4 +9,7 @@
     <color name="switchTrackOn">#f5cedd</color>
     <color name="disabledBlack">#85000000</color>
     <color name="transparentWhite">#EBE9E9E9</color>
+
+    <color name="splashStartColor">#D261F7</color>
+    <color name="splashEndColor">#9230AC</color>
 </resources>
