@@ -23,7 +23,7 @@
 
         <activity
             android:name=".activities.HistoryDetailActivity"
-            android:theme="@style/HistoryTheme" />
+            android:theme="@style/HistoryDetailActivityTheme" />
 
         <activity
             android:name="com.seunghyun.randomseats.activities.FullScreenActivity"
