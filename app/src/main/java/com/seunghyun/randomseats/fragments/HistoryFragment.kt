@@ -17,7 +17,7 @@ import com.seunghyun.randomseats.R
 import com.seunghyun.randomseats.database.HistoryDBContract
 import com.seunghyun.randomseats.database.HistoryDBHelper
 import com.seunghyun.randomseats.database.HistoryItem
-import com.seunghyun.randomseats.recyclerview.RecyclerAdapter
+import com.seunghyun.randomseats.utils.RecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_history.view.*
 
 class HistoryFragment : Fragment() {

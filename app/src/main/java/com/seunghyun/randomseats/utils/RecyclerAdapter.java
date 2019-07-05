@@ -1,4 +1,4 @@
-package com.seunghyun.randomseats.recyclerview;
+package com.seunghyun.randomseats.utils;
 
 import android.content.Context;
 import android.content.Intent;
