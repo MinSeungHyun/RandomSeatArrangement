@@ -29,6 +29,10 @@ class HistoryDBHelper(context: Context) : SQLiteOpenHelper(context, DB_FILE_NAME
             LocalBroadcastManager.getInstance(context).sendBroadcast(Intent("History added")) //To HistoryFragment.kt
         }
 
+        fun deleteValue(context: Context, item: HistoryItem) {
+            HistoryDBHelper(context).writableDatabase.delete(HistoryDBContract.TABLE_NAME, HistoryDBContract.COL_ID + "=" + item.id, null)
+        }
+
         fun getByteArrayFromBitmap(bitmap: Bitmap): ByteArray {
             val stream = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)

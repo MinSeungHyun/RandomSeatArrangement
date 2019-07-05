@@ -5,8 +5,8 @@ class HistoryDBContract {
         const val DB_VERSION = 1
         const val DB_FILE_NAME = "history.db"
 
-        private const val TABLE_NAME = "HISTORY"
-        private const val COL_ID = "ID"
+        const val TABLE_NAME = "HISTORY"
+        const val COL_ID = "ID"
         private const val COL_TITLE = "TITLE"
         private const val COL_DESCRIPTION = "DESCRIPTION"
         private const val COL_DATE = "DATE"
