@@ -1,17 +1,19 @@
 package com.seunghyun.randomseats.utils;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
@@ -33,6 +35,7 @@ public class DataViewModel extends ViewModel {
     private MutableLiveData<ArrayList<String>> shownSeatsList;
     private MutableLiveData<HashMap<String, String>> fixedSeatsMap;
     private MutableLiveData<Boolean> isSeatAppearanceSettingFinished;
+    private MutableLiveData<Bitmap> seatImage;
 
     public DataViewModel() {
     }
@@ -123,5 +126,10 @@ public class DataViewModel extends ViewModel {
         if (isSeatAppearanceSettingFinished == null)
             isSeatAppearanceSettingFinished = new MutableLiveData<>();
         return isSeatAppearanceSettingFinished;
+    }
+
+    public MutableLiveData<Bitmap> getSeatImage() {
+        if (seatImage == null) seatImage = new MutableLiveData<>();
+        return seatImage;
     }
 }

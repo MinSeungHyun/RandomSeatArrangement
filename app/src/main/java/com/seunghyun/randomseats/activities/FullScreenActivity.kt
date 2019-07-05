@@ -6,12 +6,18 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.seunghyun.randomseats.R
 import com.seunghyun.randomseats.fragments.HomeFragment
+import com.seunghyun.randomseats.utils.DataViewModel
 import kotlinx.android.synthetic.main.activity_full_screen.*
 
 
 class FullScreenActivity : AppCompatActivity() {
+    private val model: DataViewModel by lazy {
+        ViewModelProviders.of(this@FullScreenActivity).get(DataViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -31,8 +37,15 @@ class FullScreenActivity : AppCompatActivity() {
             }
         }
 
-        val bitmaps = HomeFragment.requestGridBitmap.getBitmaps()
-        photoView.setImageBitmap(mergeBitmaps(bitmaps))
+        val image: Bitmap?
+        if (model.seatImage.value == null) {
+            val bitmaps = HomeFragment.requestGridBitmap.getBitmaps()
+            image = mergeBitmaps(bitmaps)
+            model.seatImage.value = image
+        } else {
+            image = model.seatImage.value
+        }
+        photoView.setImageBitmap(image)
 
 //        saveButton.setOnClickListener {
 //            //저장하기

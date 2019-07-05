@@ -17,7 +17,6 @@ Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com
 12. 초기화할 때 초기화 할 항목 설정 
 13. 스플래시화면 뜨는 알고리즘 변경
 14. 광고 위치, 뜨는 타이밍 개선
-15. (FullScreenActivity.kt:36) NullPointerException : FullScreenActivity에서 화면 전환할 때 MainActivity가 종료된 상태면 발생
 16. tgkill 
 17. APK 암호화
 18. 기록 불러올 때 나눠서 불러오기
