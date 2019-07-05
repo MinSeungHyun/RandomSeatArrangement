@@ -17,7 +17,6 @@ import com.seunghyun.randomseats.R
 import com.seunghyun.randomseats.database.HistoryDBContract
 import com.seunghyun.randomseats.database.HistoryDBHelper
 import com.seunghyun.randomseats.database.HistoryItem
-import com.seunghyun.randomseats.recyclerview.CardItem
 import com.seunghyun.randomseats.recyclerview.RecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_history.view.*
 
@@ -30,7 +29,7 @@ class HistoryFragment : Fragment() {
     private val historyAddedReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) { //From HistoryDBHelper.kt
             val historyItem = loadLastData()
-            mAdapter.addItem(CardItem(historyItem.title, historyItem.description, historyItem.date, historyItem.seatImage))
+            mAdapter.addItem(historyItem)
             parent.emptyHistoryTV.visibility = View.GONE
         }
     }
@@ -49,19 +48,14 @@ class HistoryFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         parent = inflater.inflate(R.layout.fragment_history, container, false)
-        val items = ArrayList<CardItem>().apply {
-            historyItems.forEach {
-                add(CardItem(it.title, it.description, it.date, it.seatImage))
-            }
-        }
 
-        setUpRecyclerView(items)
-        if (items.size == 0)
+        setUpRecyclerView(historyItems)
+        if (historyItems.size == 0)
             parent.emptyHistoryTV.visibility = View.VISIBLE
         return parent
     }
 
-    private fun setUpRecyclerView(items: ArrayList<CardItem>) {
+    private fun setUpRecyclerView(items: ArrayList<HistoryItem>) {
         mAdapter = RecyclerAdapter(requireActivity(), items)
         with(parent.recycler_view) {
             setHasFixedSize(true)
@@ -90,7 +84,6 @@ class HistoryFragment : Fragment() {
         cursor.moveToLast()
         val dbItem = DBItem(cursor)
         val item = HistoryItem(dbItem.getId(), dbItem.getTitle(), dbItem.getDescription(), dbItem.getDate(), dbItem.getSeatInfo(), dbItem.getSeatImage())
-        historyItems.add(item)
         cursor.close()
         return item
     }

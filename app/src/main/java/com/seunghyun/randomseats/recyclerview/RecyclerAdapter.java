@@ -18,16 +18,17 @@ import com.google.android.material.snackbar.Snackbar;
 import com.seunghyun.randomseats.R;
 import com.seunghyun.randomseats.activities.HistoryDetailActivity;
 import com.seunghyun.randomseats.database.HistoryDBHelper;
+import com.seunghyun.randomseats.database.HistoryItem;
 
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private final FragmentActivity context;
-    private List<CardItem> items;
-    private CardItem recentlyDeletedItem;
+    private List<HistoryItem> items;
+    private HistoryItem recentlyDeletedItem;
     private int recentlyDeletedItemPosition;
 
-    public RecyclerAdapter(FragmentActivity context, List<CardItem> items) {
+    public RecyclerAdapter(FragmentActivity context, List<HistoryItem> items) {
         this.items = items;
         this.context = context;
     }
@@ -41,19 +42,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        CardItem item = items.get(position);
-        viewHolder.titleTV.setText(item.getTitleText());
-        viewHolder.descriptionTV.setText(item.getDescriptionText());
-        viewHolder.dateTV.setText(item.getDateText());
+        HistoryItem item = items.get(position);
+        viewHolder.titleTV.setText(item.getTitle());
+        viewHolder.descriptionTV.setText(item.getDescription());
+        viewHolder.dateTV.setText(item.getDate());
         viewHolder.seatImage.setImageBitmap(item.getSeatImage());
 
         viewHolder.clickableView.setOnClickListener(v -> {
             Context context = v.getContext();
-            CardItem clickedItem = items.get(position);
+            HistoryItem clickedItem = items.get(position);
             Intent intent = new Intent(context, HistoryDetailActivity.class);
-            intent.putExtra("title", clickedItem.getTitleText());
-            intent.putExtra("description", clickedItem.getDescriptionText());
-            intent.putExtra("date", clickedItem.getDateText());
+            intent.putExtra("title", clickedItem.getTitle());
+            intent.putExtra("description", clickedItem.getDescription());
+            intent.putExtra("date", clickedItem.getDate());
             intent.putExtra("image", HistoryDBHelper.Companion.getByteArrayFromBitmap(clickedItem.getSeatImage()));
             context.startActivity(intent);
         });
@@ -64,7 +65,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return items.size();
     }
 
-    public void addItem(CardItem item) {
+    public void addItem(HistoryItem item) {
         items.add(item);
         notifyDataSetChanged();
         Toast.makeText(context, R.string.item_added, Toast.LENGTH_LONG).show();
