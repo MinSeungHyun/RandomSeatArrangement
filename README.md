@@ -21,6 +21,7 @@ Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com
 17. APK 암호화
 18. 기록 불러올 때 나눠서 불러오기
 19. 화면 가로로 돌리면 기록 2열로 보이게
+20. Splash Screen 로직 변경
 
 ## Ver 1.0 (Code 1)
 > 앱 출시
