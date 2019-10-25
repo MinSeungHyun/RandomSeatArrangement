@@ -4,6 +4,11 @@ Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MinSeungHyun/RandomSeatArrangement.svg?label=commit)
 ![GitHub top language](https://img.shields.io/github/languages/top/MinSeungHyun/RandomSeatArrangement.svg?color=orange)
 ![GitHub repo size](https://img.shields.io/github/repo-size/MinSeungHyun/RandomSeatArrangement.svg?color=brightgreen)
+
+## 전체적으로 리팩토링 하는중입니당
+<br>
+
+
 ## 업데이트 예정
 1. 공유기능
 2. 기록 저장기능 (색깔 선택 가능)
