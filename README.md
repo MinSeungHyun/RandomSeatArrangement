@@ -5,7 +5,7 @@ Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com
 ![GitHub top language](https://img.shields.io/github/languages/top/MinSeungHyun/RandomSeatArrangement.svg?color=orange)
 ![GitHub repo size](https://img.shields.io/github/repo-size/MinSeungHyun/RandomSeatArrangement.svg?color=brightgreen)
 
-## 전체적으로 리팩토링 하는중입니다.
+## 전체적으로 리팩토링 하는중입니다. (Branch v3.0)
 <br>
 
 
