@@ -27,6 +27,7 @@ Random Seat Arrangement (랜덤 자리 배치)  <a href="https://play.google.com
 18. 기록 불러올 때 나눠서 불러오기
 19. 화면 가로로 돌리면 기록 2열로 보이게
 20. Splash Screen 로직 변경
+21. 앞뒤 구분 기능
 
 ## Ver 2.3 (Code 7) (최신)
 > 좌석 크기, 글씨 크기 설정 기능  
