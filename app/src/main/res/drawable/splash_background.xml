@@ -4,6 +4,11 @@
     <item
         android:width="120dp"
         android:height="120dp"
+        android:bottom="68dp"
         android:drawable="@drawable/app_icon_foreground"
         android:gravity="center" />
+    <item
+        android:drawable="@drawable/app_name"
+        android:gravity="center"
+        android:top="68dp" />
 </layer-list>
