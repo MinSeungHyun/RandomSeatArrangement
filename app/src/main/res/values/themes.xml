@@ -7,4 +7,9 @@
         <item name="actionBarStyle">@style/Widget.App.ActionBar</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <style name="Theme.App.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
 </resources>

@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.home.HomeActivity">
+
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:theme="@style/Theme.App.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -19,6 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.home.HomeActivity" />
     </application>
 
 </manifest>
