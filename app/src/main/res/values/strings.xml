@@ -4,4 +4,6 @@
 
     <string name="home">Home</string>
     <string name="settings">Settings</string>
+
+    <string name="create_new_arrangement">Create a new arrangement</string>
 </resources>

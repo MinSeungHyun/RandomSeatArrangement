@@ -9,11 +9,14 @@ import com.seunghyun.randomseats.R
 import com.seunghyun.randomseats.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
+    private val viewModel = HomeViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTitle(R.string.home)
-        DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
+        DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home).apply {
+            vm = viewModel
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

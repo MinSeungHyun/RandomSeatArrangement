@@ -1,3 +1,7 @@
 package com.seunghyun.randomseats.ui.home
 
-class HomeViewModel
+class HomeViewModel {
+    fun onCreateButtonClick() {
+
+    }
+}
