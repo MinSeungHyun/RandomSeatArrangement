@@ -24,6 +24,8 @@
         </activity>
 
         <activity android:name=".ui.home.HomeActivity" />
+
+        <activity android:name=".ui.arrangement.ArrangementActivity" />
     </application>
 
 </manifest>
