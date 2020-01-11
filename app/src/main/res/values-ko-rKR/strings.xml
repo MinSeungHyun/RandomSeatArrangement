@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">랜덤 자리 배치</string>
+
+    <string name="home">홈</string>
+    <string name="settings">설정</string>
 </resources>
