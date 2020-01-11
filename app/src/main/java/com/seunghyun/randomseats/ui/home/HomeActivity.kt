@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.seunghyun.randomseats.R
+import com.seunghyun.randomseats.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
         setTitle(R.string.home)
+        DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
