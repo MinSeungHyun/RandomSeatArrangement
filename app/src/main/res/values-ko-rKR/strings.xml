@@ -3,6 +3,7 @@
     <string name="app_name">랜덤 자리 배치</string>
 
     <string name="home">홈</string>
+    <string name="arrangement">배치</string>
     <string name="settings">설정</string>
 
     <string name="create_new_arrangement">새로운 배치 만들기</string>

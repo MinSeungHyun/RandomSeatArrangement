@@ -7,6 +7,7 @@ import com.seunghyun.randomseats.R
 class ArrangementActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitle(R.string.arrangement)
         setContentView(R.layout.activity_arrangment)
     }
 }
