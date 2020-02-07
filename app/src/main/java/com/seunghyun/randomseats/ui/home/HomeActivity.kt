@@ -8,6 +8,7 @@ import com.seunghyun.randomseats.R
 import com.seunghyun.randomseats.databinding.ActivityHomeBinding
 import com.seunghyun.randomseats.ui.BindingActivity
 import com.seunghyun.randomseats.ui.arrangement.ArrangementActivity
+import com.seunghyun.randomseats.ui.setting.SettingActivity
 
 class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home), HomeViewController {
     private val viewModel = HomeViewModel(this)
@@ -26,7 +27,10 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.settings -> true
+        R.id.settings -> {
+            startActivity(Intent(this, SettingActivity::class.java))
+            true
+        }
         else -> super.onOptionsItemSelected(item)
     }
 
